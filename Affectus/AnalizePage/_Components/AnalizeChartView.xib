@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AnalizeChartView" customModule="Affectus" customModuleProvider="target">
+            <connections>
+                <outlet property="lineChartView" destination="5ob-ai-pAN" id="ead-R7-xIq"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="300" height="200"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5ob-ai-pAN" customClass="LineChartView" customModule="Charts">
+                    <rect key="frame" x="10" y="10" width="280" height="180"/>
+                    <color key="backgroundColor" name="backgroundColour"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.CornerRadius">
+                            <integer key="value" value="20"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="5ob-ai-pAN" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="K8w-qf-qiZ"/>
+                <constraint firstItem="5ob-ai-pAN" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="ecT-Sk-fOB"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="5ob-ai-pAN" secondAttribute="trailing" constant="10" id="fas-f8-ygy"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="5ob-ai-pAN" secondAttribute="bottom" constant="10" id="oRb-DA-2Wp"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="132" y="111"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="backgroundColour">
+            <color red="0.85900002717971802" green="0.91399997472763062" blue="0.9649999737739563" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController" customModule="Affectus" customModuleProvider="target">
+            <connections>
+                <outlet property="mainCollectionView" destination="Hzp-ge-29R" id="vxd-eA-Ziq"/>
+                <outlet property="statisticImageView" destination="6ZR-mp-AaJ" id="epr-de-R8L"/>
+                <outlet property="view" destination="iN0-l3-epB" id="Shu-5T-cWw"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Home" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xny-yi-Sv0">
+                    <rect key="frame" x="167" y="54" width="80" height="26.5"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="80" id="iju-g5-L1J"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
+                    <color key="textColor" name="cellGradientStartColour"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bar-chart" translatesAutoresizingMaskIntoConstraints="NO" id="6ZR-mp-AaJ">
+                    <rect key="frame" x="359" y="55" width="25" height="25"/>
+                    <color key="tintColor" name="cellGradientEndColour"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="25" id="Y8V-dS-2k1"/>
+                        <constraint firstAttribute="height" constant="25" id="wxU-f6-WpI"/>
+                    </constraints>
+                </imageView>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Hzp-ge-29R">
+                    <rect key="frame" x="0.0" y="110.5" width="414" height="751.5"/>
+                    <color key="backgroundColor" name="backgroundColour"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="T8r-d9-tcg">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="0KQ-8e-Fd9"/>
+            <color key="backgroundColor" name="backgroundColour"/>
+            <constraints>
+                <constraint firstItem="0KQ-8e-Fd9" firstAttribute="bottom" secondItem="Hzp-ge-29R" secondAttribute="bottom" id="AaG-ib-DH7"/>
+                <constraint firstItem="0KQ-8e-Fd9" firstAttribute="trailing" secondItem="Hzp-ge-29R" secondAttribute="trailing" id="C3z-Zo-gVl"/>
+                <constraint firstItem="Hzp-ge-29R" firstAttribute="leading" secondItem="0KQ-8e-Fd9" secondAttribute="leading" id="Czn-tF-jeL"/>
+                <constraint firstItem="Hzp-ge-29R" firstAttribute="top" secondItem="Xny-yi-Sv0" secondAttribute="bottom" constant="30" id="DC4-cA-pYm"/>
+                <constraint firstItem="6ZR-mp-AaJ" firstAttribute="centerY" secondItem="Xny-yi-Sv0" secondAttribute="centerY" id="Dws-JG-wQb"/>
+                <constraint firstItem="0KQ-8e-Fd9" firstAttribute="trailing" secondItem="6ZR-mp-AaJ" secondAttribute="trailing" constant="30" id="KD0-Mh-lqr"/>
+                <constraint firstItem="Xny-yi-Sv0" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="O6R-EB-efa"/>
+                <constraint firstItem="Xny-yi-Sv0" firstAttribute="top" secondItem="0KQ-8e-Fd9" secondAttribute="top" constant="10" id="sYA-GQ-ZeW"/>
+            </constraints>
+            <point key="canvasLocation" x="131.8840579710145" y="109.82142857142857"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="bar-chart" width="512" height="512"/>
+        <namedColor name="backgroundColour">
+            <color red="0.85900002717971802" green="0.91399997472763062" blue="0.9649999737739563" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="cellGradientEndColour">
+            <color red="0.45500001311302185" green="0.39599999785423279" blue="0.89399999380111694" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="cellGradientStartColour">
+            <color red="0.27099999785423279" green="0.18799999356269836" blue="0.70200002193450928" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

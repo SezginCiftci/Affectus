@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AnalizeViewController" customModule="Affectus" customModuleProvider="target">
+            <connections>
+                <outlet property="analizeChartView" destination="MgZ-6j-JFv" id="dmn-GN-0Dp"/>
+                <outlet property="analizeCollectionView" destination="S3a-Uj-JoH" id="T6q-ON-6pc"/>
+                <outlet property="view" destination="iN0-l3-epB" id="jfo-mh-j2o"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="996"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vm6-rb-uAb">
+                    <rect key="frame" x="20" y="54" width="40" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="a1O-JQ-mIM"/>
+                        <constraint firstAttribute="width" constant="40" id="rQT-aW-T2z"/>
+                    </constraints>
+                    <color key="tintColor" name="cellGradientStartColour"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" image="chevron.backward" catalog="system"/>
+                    <connections>
+                        <action selector="backButtonAct:" destination="-1" eventType="touchUpInside" id="VtM-UE-M5M"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Analize Your-Self" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Sh-8p-noO">
+                    <rect key="frame" x="107" y="54" width="200" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="KZt-19-Fjh"/>
+                        <constraint firstAttribute="width" constant="200" id="djq-yR-AI5"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                    <color key="textColor" name="cellGradientStartColour"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hwc-ru-Mi3">
+                    <rect key="frame" x="0.0" y="84" width="414" height="912"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LRj-ss-rL7" userLabel="Content View">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="912"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MgZ-6j-JFv" customClass="AnalizeChartView" customModule="Affectus" customModuleProvider="target">
+                                    <rect key="frame" x="20" y="30" width="374" height="250"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="250" id="7E7-l0-V7u"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.CornerRadius">
+                                            <integer key="value" value="25"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="S3a-Uj-JoH">
+                                    <rect key="frame" x="20" y="320" width="374" height="180"/>
+                                    <color key="backgroundColor" name="backgroundColour"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="180" id="aF3-5A-enw"/>
+                                    </constraints>
+                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="X2S-Fh-YVX">
+                                        <size key="itemSize" width="128" height="128"/>
+                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    </collectionViewFlowLayout>
+                                </collectionView>
+                                <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="6s1-fe-5o6" userLabel="Cloud View" customClass="AnalizeCloudView" customModule="Affectus" customModuleProvider="target">
+                                    <rect key="frame" x="20" y="540" width="374" height="320"/>
+                                    <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="320" id="wRW-bi-thr"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.CornerRadius">
+                                            <integer key="value" value="30"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" name="backgroundColour"/>
+                            <constraints>
+                                <constraint firstItem="MgZ-6j-JFv" firstAttribute="top" secondItem="LRj-ss-rL7" secondAttribute="top" constant="30" id="45x-Hb-cvV"/>
+                                <constraint firstItem="6s1-fe-5o6" firstAttribute="leading" secondItem="LRj-ss-rL7" secondAttribute="leading" constant="20" id="9n3-nA-JRg"/>
+                                <constraint firstAttribute="trailing" secondItem="MgZ-6j-JFv" secondAttribute="trailing" constant="20" id="Brf-Mq-W4i"/>
+                                <constraint firstItem="S3a-Uj-JoH" firstAttribute="top" secondItem="MgZ-6j-JFv" secondAttribute="bottom" constant="40" id="DPT-bZ-dBv"/>
+                                <constraint firstItem="MgZ-6j-JFv" firstAttribute="leading" secondItem="LRj-ss-rL7" secondAttribute="leading" constant="20" id="Gzq-nu-LN3"/>
+                                <constraint firstItem="6s1-fe-5o6" firstAttribute="top" secondItem="S3a-Uj-JoH" secondAttribute="bottom" constant="40" id="cmZ-me-aA5"/>
+                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="6s1-fe-5o6" secondAttribute="bottom" constant="20" id="kxG-kf-VDM"/>
+                                <constraint firstAttribute="trailing" secondItem="S3a-Uj-JoH" secondAttribute="trailing" constant="20" id="mlM-xV-tiO"/>
+                                <constraint firstAttribute="height" constant="912" id="rrS-ra-9hv"/>
+                                <constraint firstAttribute="trailing" secondItem="6s1-fe-5o6" secondAttribute="trailing" constant="20" id="v7r-3W-N55"/>
+                                <constraint firstItem="S3a-Uj-JoH" firstAttribute="leading" secondItem="LRj-ss-rL7" secondAttribute="leading" constant="20" id="vJ1-0z-4yH"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="LRj-ss-rL7" firstAttribute="leading" secondItem="hwc-ru-Mi3" secondAttribute="leading" id="8rC-nu-5bY"/>
+                        <constraint firstItem="LRj-ss-rL7" firstAttribute="top" secondItem="hwc-ru-Mi3" secondAttribute="top" id="TPz-zU-Bk6"/>
+                        <constraint firstAttribute="trailing" secondItem="LRj-ss-rL7" secondAttribute="trailing" id="ctT-86-HYu"/>
+                        <constraint firstAttribute="bottom" secondItem="LRj-ss-rL7" secondAttribute="bottom" id="ulR-Uq-h8C"/>
+                    </constraints>
+                </scrollView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="03J-ED-fYc">
+                    <rect key="frame" x="359" y="56.5" width="25" height="25"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="25" id="njW-2a-r5v"/>
+                        <constraint firstAttribute="height" constant="25" id="rN5-xJ-9uG"/>
+                    </constraints>
+                    <color key="tintColor" name="cellGradientEndColour"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" image="journal"/>
+                    <connections>
+                        <action selector="journalButtonAct:" destination="-1" eventType="touchUpInside" id="OXV-uq-u80"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" name="backgroundColour"/>
+            <constraints>
+                <constraint firstItem="03J-ED-fYc" firstAttribute="centerY" secondItem="7Sh-8p-noO" secondAttribute="centerY" id="2U0-JC-eLg"/>
+                <constraint firstItem="hwc-ru-Mi3" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="5jQ-fd-Khc"/>
+                <constraint firstItem="Vm6-rb-uAb" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="AlD-2y-N7g"/>
+                <constraint firstItem="7Sh-8p-noO" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="FPi-uG-PcG"/>
+                <constraint firstItem="LRj-ss-rL7" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="R2Z-Gj-Rbn"/>
+                <constraint firstItem="7Sh-8p-noO" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="Sxd-5m-hJS"/>
+                <constraint firstItem="hwc-ru-Mi3" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="Zg2-sw-nfA"/>
+                <constraint firstItem="hwc-ru-Mi3" firstAttribute="top" secondItem="7Sh-8p-noO" secondAttribute="bottom" id="aVF-01-a1I"/>
+                <constraint firstItem="Vm6-rb-uAb" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="o0m-xh-ZN0"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="03J-ED-fYc" secondAttribute="trailing" constant="30" id="orI-v4-adK"/>
+                <constraint firstAttribute="bottom" secondItem="hwc-ru-Mi3" secondAttribute="bottom" id="sUT-sO-Pkc"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="131.8840579710145" y="110.49107142857143"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="chevron.backward" catalog="system" width="96" height="128"/>
+        <image name="journal" width="512" height="512"/>
+        <namedColor name="backgroundColour">
+            <color red="0.85900002717971802" green="0.91399997472763062" blue="0.9649999737739563" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="cellGradientEndColour">
+            <color red="0.45500001311302185" green="0.39599999785423279" blue="0.89399999380111694" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="cellGradientStartColour">
+            <color red="0.27099999785423279" green="0.18799999356269836" blue="0.70200002193450928" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
