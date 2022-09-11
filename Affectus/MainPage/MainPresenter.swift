@@ -10,16 +10,18 @@ import Foundation
 protocol MainPresenterProtocol: AnyObject {
     func notifyViewWillAppear()
     func notifyViewDidLoad()
-    func notifyViewDidDisappear()
+    func notifyViewWillDisappear()
     
     func notifyAnalizeTapped()
-    func notifyEditButtonTapped()
+    func notifyEditButtonTapped(_ selectedId: UUID, _ localIndex: Int)
     func notifyDeleteButtonTapped(_ selectedId: UUID, _ itemIndex: Int)
 }
 
 protocol MainInteractorOutputProtocol: AnyObject {
     func didFetchCoreData(_ listData: AddNewEntityList)
     func notifyDidFetchData(_ listData: AddNewEntityList)
+    func deleteOnSuccess()
+    func deleteOnError()
 }
 
 class MainPresenter: MainPresenterProtocol {
@@ -39,7 +41,7 @@ class MainPresenter: MainPresenterProtocol {
         interactor?.addObservers()
     }
     
-    func notifyViewDidDisappear() {
+    func notifyViewWillDisappear() {
         interactor?.removeNotificationObservers()
     }
     
@@ -47,8 +49,8 @@ class MainPresenter: MainPresenterProtocol {
         router?.routeToAnalizeVC()
     }
     
-    func notifyEditButtonTapped() {
-        router?.routeToAddNewVC()
+    func notifyEditButtonTapped(_ selectedId: UUID, _ localIndex: Int) {
+        router?.routeToAddNewVC(selectedId, localIndex)
     }
     
     func notifyDeleteButtonTapped(_ selectedId: UUID, _ itemIndex: Int) {
@@ -67,4 +69,13 @@ extension MainPresenter: MainInteractorOutputProtocol {
     func notifyDidFetchData(_ listData: AddNewEntityList) {
         view?.loadCoreData(listData)
     }
+    
+    func deleteOnSuccess() {
+        view?.deleteItemWithSuccess()
+    }
+    
+    func deleteOnError() {
+        view?.deleteItemWithError()
+    }
+    
 }

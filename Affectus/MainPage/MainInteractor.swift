@@ -23,18 +23,18 @@ class MainInteractor: MainInteractorProtocol {
     
     func addObservers() {
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(didNewDataFetched(_ :)),
-                                               name: NSNotification.Name("newData"),
+                                               selector: #selector(didNewDataFetched),
+                                               name: .didSavedNewData,
                                                object: nil)
     }
     
     func removeNotificationObservers()  {
-//        NotificationCenter.default.removeObserver(self,
-//                                                  name: NSNotification.Name("newData"),
-//                                                  object: nil)
+        NotificationCenter.default.removeObserver(self,
+                                                  name: .didSavedNewData,
+                                                  object: nil)
     }
     
-    @objc func didNewDataFetched(_ notification: Notification) {
+    @objc func didNewDataFetched() {
         CoreDataManager.shared.loadData { [weak self] addNewEntityList in
             guard let self = self else { return }
             guard let addNewEntity = self.addNewEntityList else { return }
@@ -57,6 +57,7 @@ class MainInteractor: MainInteractorProtocol {
     }
     
     func didDeleteItem(_ selectedId: UUID, _ itemIndex: Int) {
+        fetchCoreDatas()
         CoreDataManager.shared.deleteItem(chosenId: selectedId) { addNewEntity in
             self.addNewEntity = addNewEntity
             addNewEntityList?.moodDescribeArray.remove(at: itemIndex)
@@ -65,6 +66,10 @@ class MainInteractor: MainInteractorProtocol {
             addNewEntityList?.moodEmojiArray.remove(at: itemIndex)
             addNewEntityList?.notesTextArray.remove(at: itemIndex)
             addNewEntityList?.idArray.remove(at: itemIndex)
+        } onSuccess: {
+            self.presenter?.deleteOnSuccess()
+        } onError: {
+            self.presenter?.deleteOnError()
         }
     }
 }

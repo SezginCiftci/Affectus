@@ -9,7 +9,7 @@ import UIKit
 
 protocol MainRouterProtocol {
     func routeToAnalizeVC()
-    func routeToAddNewVC()
+    func routeToAddNewVC(_ selectedId: UUID, _ localIndex: Int)
 }
 
 class MainRouter: MainRouterProtocol {
@@ -42,10 +42,11 @@ class MainRouter: MainRouterProtocol {
         }
     }
     
-    func routeToAddNewVC() {
+    func routeToAddNewVC(_ selectedId: UUID, _ localIndex: Int) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             let addNew = AddNewRouter.createModule()
+            addNew.editionIdAndIndex = (a: selectedId, b: localIndex)
             addNew.modalPresentationStyle = .fullScreen
             self.view?.present(addNew, animated: true)
         }

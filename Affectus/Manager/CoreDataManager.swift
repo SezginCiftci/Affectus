@@ -11,7 +11,7 @@ import CoreData
 struct CoreDataManager {
     static var shared = CoreDataManager()
 
-    func saveData(id: UUID, moodDate: Date, notesText: String, moodEmoji: Int, moodDescribe: String, activitySelection: String) {
+    func saveData(id: UUID, moodDate: Date, notesText: String, moodEmoji: Int, moodDescribe: String, activitySelection: String, onSuccess: () -> (), onError: () -> ()) {
 
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
@@ -27,9 +27,9 @@ struct CoreDataManager {
         
         do {
             try context.save()
-            print("success")
+            onSuccess()
         } catch {
-            print("error")
+            onError()
         }
     }
 
@@ -91,7 +91,7 @@ struct CoreDataManager {
         }
     }
 
-    func deleteItem(chosenId: UUID, completion: ((_ addNewEntity: AddNewEntity) -> ())) {
+    func deleteItem(chosenId: UUID, completion: ((_ addNewEntity: AddNewEntity) -> ()), onSuccess: () -> (), onError: () -> ()) {
 
         var addNewEntity = AddNewEntity()
         addNewEntity.id = chosenId
@@ -116,8 +116,9 @@ struct CoreDataManager {
                             completion(addNewEntity)
                             do {
                                 try context.save()
+                                onSuccess()
                             } catch {
-                                print("error")
+                                onError()
                             }
 
                             break

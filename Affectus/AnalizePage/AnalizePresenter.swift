@@ -8,9 +8,7 @@
 import Foundation
 
 protocol AnalizePresenterProtocol: AnyObject {
-    func notifyBackButtonTapped()
     func notifyViewDidload()
-    func notifyJournalButtonTapped()
 }
 
 protocol AnalizeInteractorOutputProtocol: AnyObject {
@@ -26,13 +24,6 @@ class AnalizePresenter: AnalizePresenterProtocol {
         interactor?.fetchCoreData()
     }
     
-    func notifyBackButtonTapped() {
-        router?.routeToMainPage()
-    }
-    
-    func notifyJournalButtonTapped() {
-        router?.routeToJournalPage()
-    }
 }
 
 extension AnalizePresenter: AnalizeInteractorOutputProtocol {

@@ -21,19 +21,6 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="996"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vm6-rb-uAb">
-                    <rect key="frame" x="20" y="54" width="40" height="20"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="20" id="a1O-JQ-mIM"/>
-                        <constraint firstAttribute="width" constant="40" id="rQT-aW-T2z"/>
-                    </constraints>
-                    <color key="tintColor" name="cellGradientStartColour"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" image="chevron.backward" catalog="system"/>
-                    <connections>
-                        <action selector="backButtonAct:" destination="-1" eventType="touchUpInside" id="VtM-UE-M5M"/>
-                    </connections>
-                </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Analize Your-Self" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Sh-8p-noO">
                     <rect key="frame" x="107" y="54" width="200" height="30"/>
                     <constraints>
@@ -111,33 +98,16 @@
                         <constraint firstAttribute="bottom" secondItem="LRj-ss-rL7" secondAttribute="bottom" id="ulR-Uq-h8C"/>
                     </constraints>
                 </scrollView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="03J-ED-fYc">
-                    <rect key="frame" x="359" y="56.5" width="25" height="25"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="25" id="njW-2a-r5v"/>
-                        <constraint firstAttribute="height" constant="25" id="rN5-xJ-9uG"/>
-                    </constraints>
-                    <color key="tintColor" name="cellGradientEndColour"/>
-                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                    <state key="normal" image="journal"/>
-                    <connections>
-                        <action selector="journalButtonAct:" destination="-1" eventType="touchUpInside" id="OXV-uq-u80"/>
-                    </connections>
-                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" name="backgroundColour"/>
             <constraints>
-                <constraint firstItem="03J-ED-fYc" firstAttribute="centerY" secondItem="7Sh-8p-noO" secondAttribute="centerY" id="2U0-JC-eLg"/>
                 <constraint firstItem="hwc-ru-Mi3" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="5jQ-fd-Khc"/>
-                <constraint firstItem="Vm6-rb-uAb" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="AlD-2y-N7g"/>
                 <constraint firstItem="7Sh-8p-noO" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="FPi-uG-PcG"/>
                 <constraint firstItem="LRj-ss-rL7" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="R2Z-Gj-Rbn"/>
                 <constraint firstItem="7Sh-8p-noO" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="Sxd-5m-hJS"/>
                 <constraint firstItem="hwc-ru-Mi3" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="Zg2-sw-nfA"/>
                 <constraint firstItem="hwc-ru-Mi3" firstAttribute="top" secondItem="7Sh-8p-noO" secondAttribute="bottom" id="aVF-01-a1I"/>
-                <constraint firstItem="Vm6-rb-uAb" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="o0m-xh-ZN0"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="03J-ED-fYc" secondAttribute="trailing" constant="30" id="orI-v4-adK"/>
                 <constraint firstAttribute="bottom" secondItem="hwc-ru-Mi3" secondAttribute="bottom" id="sUT-sO-Pkc"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -145,13 +115,8 @@
         </view>
     </objects>
     <resources>
-        <image name="chevron.backward" catalog="system" width="96" height="128"/>
-        <image name="journal" width="512" height="512"/>
         <namedColor name="backgroundColour">
             <color red="0.85900002717971802" green="0.91399997472763062" blue="0.9649999737739563" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="cellGradientEndColour">
-            <color red="0.45500001311302185" green="0.39599999785423279" blue="0.89399999380111694" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="cellGradientStartColour">
             <color red="0.27099999785423279" green="0.18799999356269836" blue="0.70200002193450928" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

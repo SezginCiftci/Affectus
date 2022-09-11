@@ -31,11 +31,17 @@ class MainTabbarViewController: UITabBarController {
         let homeVC = MainRouter.createModule()
         let settingsVC = SettingsRouter.createModule()
         let addVC = AddNewRouter.createModule()
+        let analizeVC = AnalizeRouter.createModule()
+        let journalVC = JournalPageRouter.createModule()
+        analizeVC.tabBarItem.image = UIImage(systemName: "chart.xyaxis.line")
+        journalVC.tabBarItem.image = UIImage(systemName: "text.book.closed.fill")
         homeVC.tabBarItem.image = UIImage(systemName: "house.fill")
-        settingsVC.tabBarItem.image = UIImage(systemName: "heart.fill")
+        settingsVC.tabBarItem.image = UIImage(systemName: "gearshape.fill")
+        analizeVC.tabBarItem.title = "Analize"
+        journalVC.tabBarItem.title = "Journal"
         homeVC.tabBarItem.title = "Home"
-        settingsVC.tabBarItem.title = "Self"
-        setViewControllers([homeVC, addVC, settingsVC], animated: false)
+        settingsVC.tabBarItem.title = "Settings"
+        setViewControllers([homeVC, analizeVC, addVC, journalVC, settingsVC], animated: false)
         modalPresentationStyle = .fullScreen
         tabBar.tintColor = .black
         tabBar.barTintColor = .systemPurple
@@ -72,6 +78,7 @@ class MainTabbarViewController: UITabBarController {
     @objc private func handlePlusButton() {
         let addVC = AddNewRouter.createModule()
         addVC.modalPresentationStyle = .fullScreen
+        addVC.isEditButtonTapped = false
         present(addVC, animated: true)
     }
 }

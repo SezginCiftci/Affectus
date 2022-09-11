@@ -8,7 +8,6 @@
 import UIKit
 
 protocol JournalPageRouterProtocol {
-    func routeToAnalizePage()
 }
 
 class JournalPageRouter: JournalPageRouterProtocol {
@@ -31,7 +30,4 @@ class JournalPageRouter: JournalPageRouterProtocol {
         return view
     }
     
-    func routeToAnalizePage() {
-        view?.dismiss(animated: true)
-    }
 }

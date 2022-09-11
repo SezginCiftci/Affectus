@@ -9,12 +9,13 @@ import UIKit
 
 protocol MainViewControllerProtocol: AnyObject {
     func loadCoreData(_ listData: AddNewEntityList)
+    func deleteItemWithSuccess()
+    func deleteItemWithError()
 }
 
 class MainViewController: UIViewController, MainViewControllerProtocol, EditOrDeleteViewDelegate {
     
     @IBOutlet weak var mainCollectionView: UICollectionView!
-    @IBOutlet weak var statisticImageView: UIImageView!
     
     var presenter: MainPresenterProtocol?
     
@@ -33,11 +34,9 @@ class MainViewController: UIViewController, MainViewControllerProtocol, EditOrDe
         configureUI()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(didNewDataFetched(_ :)),
-                                               name: NSNotification.Name("new"),
+                                               name: .didSavedNewData,
                                                object: nil)
     }
-    
-    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -45,7 +44,7 @@ class MainViewController: UIViewController, MainViewControllerProtocol, EditOrDe
         configureTabbar()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(didNewDataFetched(_ :)),
-                                               name: NSNotification.Name("new"),
+                                               name: .didSavedNewData,
                                                object: nil)
     }
     
@@ -61,17 +60,19 @@ class MainViewController: UIViewController, MainViewControllerProtocol, EditOrDe
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        presenter?.notifyViewDidDisappear()
+        presenter?.notifyViewWillDisappear()
     }
     
-//    override func viewWillDisappear(_ animated: Bool) {
-//        super.viewWillDisappear(animated)
-//        presenter?.notifyViewDidDisappear()
-//    }
+    func deleteItemWithSuccess() {
+        animateWithImage("checked")
+    }
     
-//    deinit {
-//        presenter?.notifyViewDidDisappear()
-//    }
+    func deleteItemWithError() {
+        let okButton = UIAlertAction(title: "OK", style: .cancel)
+        showAlertView(title: "Error!",
+                      message: "Something went wrong, try again later.",
+                      alertActions: [okButton])
+    }
     
     private func configureTabbar() {
         tabBarController?.tabBar.isUserInteractionEnabled = true
@@ -86,11 +87,13 @@ class MainViewController: UIViewController, MainViewControllerProtocol, EditOrDe
         }
     }
     
-    func editButtonTapped() {
+    func editButtonTapped(_ selectedId: UUID) {
+        guard let localIndex = localIndex else { return }
+        presenter?.notifyEditButtonTapped(selectedId, localIndex)
+        
         editView.removeFromSuperview()
         tabBarController?.tabBar.isUserInteractionEnabled = true
         tabBarController?.tabBar.isHidden = false
-        presenter?.notifyEditButtonTapped()
     }
     
     func deleteButtonTapped(_ selectedId: UUID) {
@@ -113,15 +116,8 @@ class MainViewController: UIViewController, MainViewControllerProtocol, EditOrDe
     func configureUI() {
         configureCollectionView()
         editView.editOrDeleteDelegate = self
-        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(statisticAct(_:)))
-        statisticImageView.addGestureRecognizer(gestureRecognizer)
-        statisticImageView.isUserInteractionEnabled = true
         tabBarController?.tabBar.isUserInteractionEnabled = true
         tabBarController?.tabBar.isHidden = false
-    }
-    
-    @objc func statisticAct(_ sender: UITapGestureRecognizer) {
-        presenter?.notifyAnalizeTapped()
     }
     
     func configureCollectionView() {
@@ -144,9 +140,11 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MainCell", for: indexPath) as! MainCell
+        
         cell.titleLabel.text = listData?.moodDescribeArray[indexPath.row]
-        cell.descriptionLabel.text = listData?.activitySelectionArray[indexPath.row]
+        cell.descriptionLabel.text = listData?.moodDateArray[indexPath.row].dateToString("d MMM yyyy HH:mm")
         cell.cellImageview.image = cell.generateCellImage(listData?.moodEmojiArray[indexPath.row] ?? 0)
+        
         return cell
     }
     
@@ -155,7 +153,6 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         editView.frame = CGRect(x: 0, y: 0,
                                   width: view.frame.width,
                                   height: view.frame.height)
-        print(indexPath.row)
         editView.selectedId = listData?.idArray[indexPath.row]
         localIndex = indexPath.row
         tabBarController?.tabBar.isUserInteractionEnabled = false

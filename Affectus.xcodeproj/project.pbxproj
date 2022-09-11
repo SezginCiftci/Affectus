@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C429B7A228B6BBD700C2741A /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C429B7A128B6BBD700C2741A /* DateExtension.swift */; };
+		C41265F828BF87330071C959 /* NotificationNameExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41265F728BF87330071C959 /* NotificationNameExtensions.swift */; };
+		C429B7A228B6BBD700C2741A /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C429B7A128B6BBD700C2741A /* DateExtensions.swift */; };
 		C43FF6E12897A87200BFA61B /* EditOrDeletePopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43FF6E02897A87200BFA61B /* EditOrDeletePopupView.swift */; };
 		C43FF6E22897A87200BFA61B /* EditOrDeletePopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43FF6E02897A87200BFA61B /* EditOrDeletePopupView.swift */; };
 		C43FF6E42897A88300BFA61B /* EditOrDeletePopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C43FF6E32897A88300BFA61B /* EditOrDeletePopupView.xib */; };
@@ -17,7 +18,7 @@
 		C43FF6F7289800E800BFA61B /* DatePickViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43FF6F6289800E800BFA61B /* DatePickViewController.swift */; };
 		C43FF6F8289800E800BFA61B /* DatePickViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43FF6F6289800E800BFA61B /* DatePickViewController.swift */; };
 		C454513528A91A56003F4A26 /* PickEmotionEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C454513428A91A56003F4A26 /* PickEmotionEntity.swift */; };
-		C454513728A944CB003F4A26 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C454513628A944CB003F4A26 /* UIViewControllerExtension.swift */; };
+		C454513728A944CB003F4A26 /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C454513628A944CB003F4A26 /* UIViewControllerExtensions.swift */; };
 		C455D63C289D556100B8DEBE /* SettingsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C455D63B289D556100B8DEBE /* SettingsCollectionViewCell.swift */; };
 		C455D641289D55B800B8DEBE /* SettingsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C455D640289D55B800B8DEBE /* SettingsCollectionViewCell.xib */; };
 		C455D644289DAF0B00B8DEBE /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = C455D643289DAF0B00B8DEBE /* Charts */; };
@@ -96,6 +97,7 @@
 		C4A203D32891509D0085AC1D /* MainCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4A203D12891509D0085AC1D /* MainCell.xib */; };
 		C4C1E5B4289EDD1A00C00C01 /* AnalizeChartView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4C1E5B3289EDD1A00C00C01 /* AnalizeChartView.xib */; };
 		C4C1E5B7289EDD4200C00C01 /* AnalizeChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C1E5B6289EDD4200C00C01 /* AnalizeChartView.swift */; };
+		C4C4031328C372DA00DDD734 /* ListDataSortingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C4031228C372DA00DDD734 /* ListDataSortingHelper.swift */; };
 		C4E3E9CD28A3995200C994A3 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E3E9CC28A3995200C994A3 /* CoreDataManager.swift */; };
 		C4E3E9CE28A3995200C994A3 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E3E9CC28A3995200C994A3 /* CoreDataManager.swift */; };
 		C4E3E9D128A4395800C994A3 /* PickEmotionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4E3E9D028A4395800C994A3 /* PickEmotionCollectionViewCell.xib */; };
@@ -128,13 +130,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C429B7A128B6BBD700C2741A /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		C41265F728BF87330071C959 /* NotificationNameExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNameExtensions.swift; sourceTree = "<group>"; };
+		C429B7A128B6BBD700C2741A /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		C43FF6E02897A87200BFA61B /* EditOrDeletePopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOrDeletePopupView.swift; sourceTree = "<group>"; };
 		C43FF6E32897A88300BFA61B /* EditOrDeletePopupView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditOrDeletePopupView.xib; sourceTree = "<group>"; };
 		C43FF6F3289800D600BFA61B /* DatePickViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DatePickViewController.xib; sourceTree = "<group>"; };
 		C43FF6F6289800E800BFA61B /* DatePickViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickViewController.swift; sourceTree = "<group>"; };
 		C454513428A91A56003F4A26 /* PickEmotionEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickEmotionEntity.swift; sourceTree = "<group>"; };
-		C454513628A944CB003F4A26 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		C454513628A944CB003F4A26 /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
 		C455D63B289D556100B8DEBE /* SettingsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCollectionViewCell.swift; sourceTree = "<group>"; };
 		C455D640289D55B800B8DEBE /* SettingsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsCollectionViewCell.xib; sourceTree = "<group>"; };
 		C45E070128994BC500A524FD /* PickEmotionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickEmotionViewController.swift; sourceTree = "<group>"; };
@@ -188,6 +191,7 @@
 		C4A203D12891509D0085AC1D /* MainCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainCell.xib; sourceTree = "<group>"; };
 		C4C1E5B3289EDD1A00C00C01 /* AnalizeChartView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnalizeChartView.xib; sourceTree = "<group>"; };
 		C4C1E5B6289EDD4200C00C01 /* AnalizeChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalizeChartView.swift; sourceTree = "<group>"; };
+		C4C4031228C372DA00DDD734 /* ListDataSortingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDataSortingHelper.swift; sourceTree = "<group>"; };
 		C4E3E9CC28A3995200C994A3 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		C4E3E9D028A4395800C994A3 /* PickEmotionCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PickEmotionCollectionViewCell.xib; sourceTree = "<group>"; };
 		C4FF24E028BA882E008BB7DE /* JournalPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalPageViewController.swift; sourceTree = "<group>"; };
@@ -242,8 +246,9 @@
 		C454513828A944D2003F4A26 /* Extension+ */ = {
 			isa = PBXGroup;
 			children = (
-				C454513628A944CB003F4A26 /* UIViewControllerExtension.swift */,
-				C429B7A128B6BBD700C2741A /* DateExtension.swift */,
+				C454513628A944CB003F4A26 /* UIViewControllerExtensions.swift */,
+				C429B7A128B6BBD700C2741A /* DateExtensions.swift */,
+				C41265F728BF87330071C959 /* NotificationNameExtensions.swift */,
 			);
 			path = "Extension+";
 			sourceTree = "<group>";
@@ -406,6 +411,7 @@
 				C43FF6E32897A88300BFA61B /* EditOrDeletePopupView.xib */,
 				C4A203CD289150760085AC1D /* MainCell.swift */,
 				C4A203D12891509D0085AC1D /* MainCell.xib */,
+				C4C4031228C372DA00DDD734 /* ListDataSortingHelper.swift */,
 			);
 			path = _Components;
 			sourceTree = "<group>";
@@ -622,14 +628,15 @@
 				C4A2038A2891119F0085AC1D /* MainPresenter.swift in Sources */,
 				C4A203C4289130D50085AC1D /* AddNewEntity.swift in Sources */,
 				C4FF24EA28BA8963008BB7DE /* JournalPageEntity.swift in Sources */,
-				C454513728A944CB003F4A26 /* UIViewControllerExtension.swift in Sources */,
+				C454513728A944CB003F4A26 /* UIViewControllerExtensions.swift in Sources */,
 				C4E3E9CD28A3995200C994A3 /* CoreDataManager.swift in Sources */,
 				C4A203A428912D760085AC1D /* SettingsViewController.swift in Sources */,
 				C4863A92289265CD00251BF3 /* AnalizePresenter.swift in Sources */,
 				C455D63C289D556100B8DEBE /* SettingsCollectionViewCell.swift in Sources */,
 				C4A20353289110B60085AC1D /* AppDelegate.swift in Sources */,
-				C429B7A228B6BBD700C2741A /* DateExtension.swift in Sources */,
+				C429B7A228B6BBD700C2741A /* DateExtensions.swift in Sources */,
 				C4A2035D289110B60085AC1D /* Affectus.xcdatamodeld in Sources */,
+				C41265F828BF87330071C959 /* NotificationNameExtensions.swift in Sources */,
 				C4FF24E828BA88F6008BB7DE /* JournalPageInteractor.swift in Sources */,
 				C4863A9B289265FB00251BF3 /* AnalizeRouter.swift in Sources */,
 				C4863A8B2892643900251BF3 /* AnalizeViewController.swift in Sources */,
@@ -653,6 +660,7 @@
 				C4FF24E628BA88C6008BB7DE /* JournalPagePresenter.swift in Sources */,
 				C4A20393289111C10085AC1D /* MainRouter.swift in Sources */,
 				C43FF6E12897A87200BFA61B /* EditOrDeletePopupView.swift in Sources */,
+				C4C4031328C372DA00DDD734 /* ListDataSortingHelper.swift in Sources */,
 				C4A2039928912A400085AC1D /* MainTabbarViewController.swift in Sources */,
 				C4A203AB28912DB80085AC1D /* SettingsPresenter.swift in Sources */,
 				C45E070A2899555700A524FD /* PickEmotionCollectionViewCell.swift in Sources */,

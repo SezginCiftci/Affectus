@@ -9,7 +9,6 @@ import Foundation
 
 protocol JournalPagePresenterProtocol: AnyObject {
     func notifyViewDidLoad()
-    func notifyBackButtonTapped()
 }
 
 protocol JournalPageInteractorOutputProtocol: AnyObject  {
@@ -26,9 +25,6 @@ class JournalPagePresenter: JournalPagePresenterProtocol {
         interactor?.didFetchCoreData()
     }
     
-    func notifyBackButtonTapped() {
-        router?.routeToAnalizePage()
-    }
 }
 
 extension JournalPagePresenter: JournalPageInteractorOutputProtocol {

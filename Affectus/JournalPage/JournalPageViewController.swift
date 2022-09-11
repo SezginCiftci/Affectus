@@ -38,10 +38,6 @@ class JournalPageViewController: UIViewController, JournalPageViewControllerProt
         journalCollectionView.dataSource = self
     }
     
-    @IBAction func backButtonAct(_ sender: UIButton) {
-        presenter?.notifyBackButtonTapped()
-    }
-    
     func getCollectionViewCellSize(_ collectionView: UICollectionView, _ indexPathRow: Int) -> CGSize {
         if let textCount = listData?.notesTextArray[indexPathRow].count {
             switch textCount {

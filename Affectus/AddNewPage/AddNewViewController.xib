@@ -99,11 +99,8 @@
                                                 <action selector="addEmotionButtonAct:" destination="-1" eventType="touchUpInside" id="fke-RG-HcZ"/>
                                             </connections>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999998807907104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Which emotion describes your state? " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="S3U-sx-qmB">
-                                            <rect key="frame" x="20" y="8" width="220" height="64"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="220" id="HFL-bT-1Au"/>
-                                            </constraints>
+                                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999998807907104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Which emotion describes your state?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="S3U-sx-qmB">
+                                            <rect key="frame" x="20" y="8" width="234" height="64"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -118,6 +115,7 @@
                                         <constraint firstAttribute="bottom" secondItem="IQw-Ki-aCi" secondAttribute="bottom" constant="20" id="Ybs-PE-Ltn"/>
                                         <constraint firstItem="S3U-sx-qmB" firstAttribute="top" secondItem="67O-aq-Fln" secondAttribute="top" constant="8" id="Yjf-ZP-yTu"/>
                                         <constraint firstAttribute="trailing" secondItem="IQw-Ki-aCi" secondAttribute="trailing" constant="30" id="Yrm-24-QGH"/>
+                                        <constraint firstItem="IQw-Ki-aCi" firstAttribute="leading" secondItem="S3U-sx-qmB" secondAttribute="trailing" constant="50" id="ovs-5N-SGt"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.CornerRadius">
@@ -128,11 +126,8 @@
                                 <view clipsSubviews="YES" alpha="0.80000001192092896" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SIt-xF-Xba">
                                     <rect key="frame" x="20" y="566.5" width="374" height="80"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999998807907104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What are you going to do today? " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uf5-M8-DrI">
-                                            <rect key="frame" x="20" y="8" width="220" height="64"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="220" id="8iF-XE-c0t"/>
-                                            </constraints>
+                                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999998807907104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What are you going to do today?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uf5-M8-DrI">
+                                            <rect key="frame" x="20" y="8" width="234" height="64"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -157,6 +152,7 @@
                                         <constraint firstAttribute="trailing" secondItem="F9b-Ge-hf1" secondAttribute="trailing" constant="30" id="OsQ-n1-kYV"/>
                                         <constraint firstAttribute="bottom" secondItem="F9b-Ge-hf1" secondAttribute="bottom" constant="20" id="SYT-md-8Va"/>
                                         <constraint firstItem="uf5-M8-DrI" firstAttribute="leading" secondItem="SIt-xF-Xba" secondAttribute="leading" constant="20" id="kAb-Nl-2LK"/>
+                                        <constraint firstItem="F9b-Ge-hf1" firstAttribute="leading" secondItem="uf5-M8-DrI" secondAttribute="trailing" constant="50" id="kH4-40-e0T"/>
                                         <constraint firstAttribute="height" constant="80" id="sM8-Qa-run"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>

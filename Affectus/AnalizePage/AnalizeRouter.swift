@@ -8,8 +8,6 @@
 import UIKit
 
 protocol AnalizeRouterProtocol {
-    func routeToMainPage()
-    func routeToJournalPage()
 }
 
 class AnalizeRouter: AnalizeRouterProtocol {
@@ -32,17 +30,4 @@ class AnalizeRouter: AnalizeRouterProtocol {
         return view
     }
     
-    func routeToMainPage() {
-        view?.dismiss(animated: true)
-    }
-    
-    func routeToJournalPage() {
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
-            let journalPage = JournalPageRouter.createModule()
-            journalPage.modalPresentationStyle = .fullScreen
-            journalPage.modalTransitionStyle = .crossDissolve
-            self.view?.present(journalPage, animated: true)
-        }
-    }
 }

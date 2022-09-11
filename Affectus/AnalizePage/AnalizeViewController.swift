@@ -41,14 +41,6 @@ class AnalizeViewController: UIViewController, AnalizeViewControllerProtocol {
         }
     }
     
-    @IBAction func backButtonAct(_ sender: UIButton) {
-        presenter?.notifyBackButtonTapped()
-    }
-    
-    @IBAction func journalButtonAct(_ sender: UIButton) {
-        presenter?.notifyJournalButtonTapped()
-    }
-    
 }
 
 extension AnalizeViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {

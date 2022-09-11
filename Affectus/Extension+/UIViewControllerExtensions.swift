@@ -9,7 +9,7 @@ import UIKit
 
 extension UIViewController {
     
-    func animateSuccessImage(_ imageName: String) {
+    func animateWithImage(_ imageName: String) {
         view.isUserInteractionEnabled = false
         let animatedView = UIView()
         view.addSubview(animatedView)
