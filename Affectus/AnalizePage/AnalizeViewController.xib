@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="analizeChartView" destination="MgZ-6j-JFv" id="dmn-GN-0Dp"/>
                 <outlet property="analizeCollectionView" destination="S3a-Uj-JoH" id="T6q-ON-6pc"/>
+                <outlet property="fscalender" destination="6s1-fe-5o6" id="szb-TE-VcV"/>
                 <outlet property="view" destination="iN0-l3-epB" id="jfo-mh-j2o"/>
             </connections>
         </placeholder>
@@ -62,8 +63,8 @@
                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </collectionViewFlowLayout>
                                 </collectionView>
-                                <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="6s1-fe-5o6" userLabel="Cloud View" customClass="AnalizeCloudView" customModule="Affectus" customModuleProvider="target">
-                                    <rect key="frame" x="20" y="540" width="374" height="320"/>
+                                <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="6s1-fe-5o6" userLabel="Cloud View" customClass="FSCalendar">
+                                    <rect key="frame" x="20" y="539" width="374" height="320"/>
                                     <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="320" id="wRW-bi-thr"/>
@@ -82,7 +83,7 @@
                                 <constraint firstAttribute="trailing" secondItem="MgZ-6j-JFv" secondAttribute="trailing" constant="20" id="Brf-Mq-W4i"/>
                                 <constraint firstItem="S3a-Uj-JoH" firstAttribute="top" secondItem="MgZ-6j-JFv" secondAttribute="bottom" constant="40" id="DPT-bZ-dBv"/>
                                 <constraint firstItem="MgZ-6j-JFv" firstAttribute="leading" secondItem="LRj-ss-rL7" secondAttribute="leading" constant="20" id="Gzq-nu-LN3"/>
-                                <constraint firstItem="6s1-fe-5o6" firstAttribute="top" secondItem="S3a-Uj-JoH" secondAttribute="bottom" constant="40" id="cmZ-me-aA5"/>
+                                <constraint firstItem="6s1-fe-5o6" firstAttribute="top" secondItem="S3a-Uj-JoH" secondAttribute="bottom" constant="39" id="cmZ-me-aA5"/>
                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="6s1-fe-5o6" secondAttribute="bottom" constant="20" id="kxG-kf-VDM"/>
                                 <constraint firstAttribute="trailing" secondItem="S3a-Uj-JoH" secondAttribute="trailing" constant="20" id="mlM-xV-tiO"/>
                                 <constraint firstAttribute="height" constant="912" id="rrS-ra-9hv"/>

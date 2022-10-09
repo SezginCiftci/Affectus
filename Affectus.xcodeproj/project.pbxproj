@@ -17,6 +17,8 @@
 		C43FF6F5289800D600BFA61B /* DatePickViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C43FF6F3289800D600BFA61B /* DatePickViewController.xib */; };
 		C43FF6F7289800E800BFA61B /* DatePickViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43FF6F6289800E800BFA61B /* DatePickViewController.swift */; };
 		C43FF6F8289800E800BFA61B /* DatePickViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43FF6F6289800E800BFA61B /* DatePickViewController.swift */; };
+		C44ED5BD28F2C98B00DC9265 /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44ED5BC28F2C98B00DC9265 /* ReusableView.swift */; };
+		C44ED5BF28F3005A00DC9265 /* ConstantQuotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44ED5BE28F3005A00DC9265 /* ConstantQuotes.swift */; };
 		C454513528A91A56003F4A26 /* PickEmotionEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C454513428A91A56003F4A26 /* PickEmotionEntity.swift */; };
 		C454513728A944CB003F4A26 /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C454513628A944CB003F4A26 /* UIViewControllerExtensions.swift */; };
 		C455D63C289D556100B8DEBE /* SettingsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C455D63B289D556100B8DEBE /* SettingsCollectionViewCell.swift */; };
@@ -41,8 +43,6 @@
 		C4863A9B289265FB00251BF3 /* AnalizeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4863A9A289265FB00251BF3 /* AnalizeRouter.swift */; };
 		C4863A9C289265FB00251BF3 /* AnalizeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4863A9A289265FB00251BF3 /* AnalizeRouter.swift */; };
 		C4863A9D2892743400251BF3 /* AnalizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4863A8A2892643900251BF3 /* AnalizeViewController.swift */; };
-		C493292628A29D1700EEA098 /* AnalizeCloudView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C493292528A29D1700EEA098 /* AnalizeCloudView.swift */; };
-		C493292828A29D2600EEA098 /* AnalizeCloudView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C493292728A29D2600EEA098 /* AnalizeCloudView.xib */; };
 		C4A20353289110B60085AC1D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A20352289110B60085AC1D /* AppDelegate.swift */; };
 		C4A20355289110B60085AC1D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A20354289110B60085AC1D /* SceneDelegate.swift */; };
 		C4A20357289110B60085AC1D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A20356289110B60085AC1D /* ViewController.swift */; };
@@ -98,6 +98,7 @@
 		C4C1E5B4289EDD1A00C00C01 /* AnalizeChartView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4C1E5B3289EDD1A00C00C01 /* AnalizeChartView.xib */; };
 		C4C1E5B7289EDD4200C00C01 /* AnalizeChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C1E5B6289EDD4200C00C01 /* AnalizeChartView.swift */; };
 		C4C4031328C372DA00DDD734 /* ListDataSortingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C4031228C372DA00DDD734 /* ListDataSortingHelper.swift */; };
+		C4D605A528E0789C00B7AD79 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = C4D605A428E0789C00B7AD79 /* FSCalendar */; };
 		C4E3E9CD28A3995200C994A3 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E3E9CC28A3995200C994A3 /* CoreDataManager.swift */; };
 		C4E3E9CE28A3995200C994A3 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E3E9CC28A3995200C994A3 /* CoreDataManager.swift */; };
 		C4E3E9D128A4395800C994A3 /* PickEmotionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4E3E9D028A4395800C994A3 /* PickEmotionCollectionViewCell.xib */; };
@@ -136,6 +137,8 @@
 		C43FF6E32897A88300BFA61B /* EditOrDeletePopupView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditOrDeletePopupView.xib; sourceTree = "<group>"; };
 		C43FF6F3289800D600BFA61B /* DatePickViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DatePickViewController.xib; sourceTree = "<group>"; };
 		C43FF6F6289800E800BFA61B /* DatePickViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickViewController.swift; sourceTree = "<group>"; };
+		C44ED5BC28F2C98B00DC9265 /* ReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
+		C44ED5BE28F3005A00DC9265 /* ConstantQuotes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantQuotes.swift; sourceTree = "<group>"; };
 		C454513428A91A56003F4A26 /* PickEmotionEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickEmotionEntity.swift; sourceTree = "<group>"; };
 		C454513628A944CB003F4A26 /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
 		C455D63B289D556100B8DEBE /* SettingsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -151,8 +154,6 @@
 		C4863A94289265E000251BF3 /* AnalizeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalizeInteractor.swift; sourceTree = "<group>"; };
 		C4863A97289265EE00251BF3 /* AnalizeEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalizeEntity.swift; sourceTree = "<group>"; };
 		C4863A9A289265FB00251BF3 /* AnalizeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalizeRouter.swift; sourceTree = "<group>"; };
-		C493292528A29D1700EEA098 /* AnalizeCloudView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalizeCloudView.swift; sourceTree = "<group>"; };
-		C493292728A29D2600EEA098 /* AnalizeCloudView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnalizeCloudView.xib; sourceTree = "<group>"; };
 		C4A2034F289110B60085AC1D /* Affectus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Affectus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4A20352289110B60085AC1D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C4A20354289110B60085AC1D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -210,6 +211,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C455D644289DAF0B00B8DEBE /* Charts in Frameworks */,
+				C4D605A528E0789C00B7AD79 /* FSCalendar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,11 +409,13 @@
 		C4A203D02891507D0085AC1D /* _Components */ = {
 			isa = PBXGroup;
 			children = (
+				C44ED5BE28F3005A00DC9265 /* ConstantQuotes.swift */,
 				C43FF6E02897A87200BFA61B /* EditOrDeletePopupView.swift */,
 				C43FF6E32897A88300BFA61B /* EditOrDeletePopupView.xib */,
 				C4A203CD289150760085AC1D /* MainCell.swift */,
 				C4A203D12891509D0085AC1D /* MainCell.xib */,
 				C4C4031228C372DA00DDD734 /* ListDataSortingHelper.swift */,
+				C44ED5BC28F2C98B00DC9265 /* ReusableView.swift */,
 			);
 			path = _Components;
 			sourceTree = "<group>";
@@ -421,8 +425,6 @@
 			children = (
 				C4699F7928A146DB00213122 /* AnalizeCell.swift */,
 				C4699F7B28A146EA00213122 /* AnalizeCell.xib */,
-				C493292528A29D1700EEA098 /* AnalizeCloudView.swift */,
-				C493292728A29D2600EEA098 /* AnalizeCloudView.xib */,
 				C4C1E5B6289EDD4200C00C01 /* AnalizeChartView.swift */,
 				C4C1E5B3289EDD1A00C00C01 /* AnalizeChartView.xib */,
 			);
@@ -478,6 +480,7 @@
 			name = Affectus;
 			packageProductDependencies = (
 				C455D643289DAF0B00B8DEBE /* Charts */,
+				C4D605A428E0789C00B7AD79 /* FSCalendar */,
 			);
 			productName = Affectus;
 			productReference = C4A2034F289110B60085AC1D /* Affectus.app */;
@@ -553,6 +556,7 @@
 			mainGroup = C4A20346289110B60085AC1D;
 			packageReferences = (
 				C455D642289DAF0B00B8DEBE /* XCRemoteSwiftPackageReference "Charts" */,
+				C4D605A328E0789C00B7AD79 /* XCRemoteSwiftPackageReference "FSCalendar" */,
 			);
 			productRefGroup = C4A20350289110B60085AC1D /* Products */;
 			projectDirPath = "";
@@ -584,7 +588,6 @@
 				C43FF6E42897A88300BFA61B /* EditOrDeletePopupView.xib in Resources */,
 				C43FF6F4289800D600BFA61B /* DatePickViewController.xib in Resources */,
 				C4C1E5B4289EDD1A00C00C01 /* AnalizeChartView.xib in Resources */,
-				C493292828A29D2600EEA098 /* AnalizeCloudView.xib in Resources */,
 				C4A203D22891509D0085AC1D /* MainCell.xib in Resources */,
 				C4A203BB2891300A0085AC1D /* AddNewViewController.xib in Resources */,
 				C4699F7C28A146EA00213122 /* AnalizeCell.xib in Resources */,
@@ -646,8 +649,8 @@
 				C4A20390289111B70085AC1D /* MainEntity.swift in Sources */,
 				C4A2038D289111AD0085AC1D /* MainInteractor.swift in Sources */,
 				C4A203BE289130550085AC1D /* AddNewPresenter.swift in Sources */,
+				C44ED5BF28F3005A00DC9265 /* ConstantQuotes.swift in Sources */,
 				C43FF6F7289800E800BFA61B /* DatePickViewController.swift in Sources */,
-				C493292628A29D1700EEA098 /* AnalizeCloudView.swift in Sources */,
 				C4863A95289265E000251BF3 /* AnalizeInteractor.swift in Sources */,
 				C4A203C1289130840085AC1D /* AddNewInteractor.swift in Sources */,
 				C4A203C7289130EF0085AC1D /* AddNewRouter.swift in Sources */,
@@ -660,6 +663,7 @@
 				C4FF24E628BA88C6008BB7DE /* JournalPagePresenter.swift in Sources */,
 				C4A20393289111C10085AC1D /* MainRouter.swift in Sources */,
 				C43FF6E12897A87200BFA61B /* EditOrDeletePopupView.swift in Sources */,
+				C44ED5BD28F2C98B00DC9265 /* ReusableView.swift in Sources */,
 				C4C4031328C372DA00DDD734 /* ListDataSortingHelper.swift in Sources */,
 				C4A2039928912A400085AC1D /* MainTabbarViewController.swift in Sources */,
 				C4A203AB28912DB80085AC1D /* SettingsPresenter.swift in Sources */,
@@ -1044,6 +1048,14 @@
 				minimumVersion = 3.0.0;
 			};
 		};
+		C4D605A328E0789C00B7AD79 /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WenchaoD/FSCalendar.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1051,6 +1063,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C455D642289DAF0B00B8DEBE /* XCRemoteSwiftPackageReference "Charts" */;
 			productName = Charts;
+		};
+		C4D605A428E0789C00B7AD79 /* FSCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C4D605A328E0789C00B7AD79 /* XCRemoteSwiftPackageReference "FSCalendar" */;
+			productName = FSCalendar;
 		};
 /* End XCSwiftPackageProductDependency section */
 

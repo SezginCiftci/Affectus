@@ -8,9 +8,18 @@
 import Foundation
 
 protocol SettingsInteractorProtocol {
-    
+    func didGiveStar()
+    func didDisableAffectus()
 }
 
 class SettingsInteractor: SettingsInteractorProtocol {
     weak var presenter: SettingsInteractorOutputProtocol?
+    
+    func didGiveStar() {
+        
+    }
+    
+    func didDisableAffectus() {
+
+    }
 }

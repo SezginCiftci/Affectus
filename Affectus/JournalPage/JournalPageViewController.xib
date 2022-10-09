@@ -39,28 +39,13 @@
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E3b-FO-K97">
-                    <rect key="frame" x="20" y="49" width="30" height="40"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="40" id="En3-Zr-n5D"/>
-                        <constraint firstAttribute="width" constant="30" id="Iez-dk-4Fc"/>
-                    </constraints>
-                    <color key="tintColor" name="cellGradientStartColour"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" image="chevron.left" catalog="system"/>
-                    <connections>
-                        <action selector="backButtonAct:" destination="-1" eventType="touchUpInside" id="RSh-W0-ac8"/>
-                    </connections>
-                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" name="backgroundColour"/>
             <constraints>
-                <constraint firstItem="E3b-FO-K97" firstAttribute="centerY" secondItem="pUa-oD-9ou" secondAttribute="centerY" id="Gmd-yi-igf"/>
                 <constraint firstItem="mRT-g4-t3A" firstAttribute="top" secondItem="pUa-oD-9ou" secondAttribute="bottom" constant="30" id="LTI-gM-Hcx"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="mRT-g4-t3A" secondAttribute="trailing" id="MEG-kQ-6X5"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="mRT-g4-t3A" secondAttribute="bottom" id="YlZ-mP-Bfa"/>
-                <constraint firstItem="E3b-FO-K97" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="lH6-aZ-maJ"/>
                 <constraint firstItem="pUa-oD-9ou" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="ufQ-9e-9dV"/>
                 <constraint firstItem="pUa-oD-9ou" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="zJe-Ar-4Sh"/>
                 <constraint firstItem="mRT-g4-t3A" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="zul-RE-Zfc"/>
@@ -69,7 +54,6 @@
         </view>
     </objects>
     <resources>
-        <image name="chevron.left" catalog="system" width="96" height="128"/>
         <namedColor name="backgroundColour">
             <color red="0.85900002717971802" green="0.91399997472763062" blue="0.9649999737739563" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

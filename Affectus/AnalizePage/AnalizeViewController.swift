@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import Charts
+import FSCalendar
 
 protocol AnalizeViewControllerProtocol: AnyObject {
     func loadCoreData(_ listData: AddNewEntityList)
@@ -16,14 +16,19 @@ class AnalizeViewController: UIViewController, AnalizeViewControllerProtocol {
     
     @IBOutlet weak var analizeChartView: AnalizeChartView!
     @IBOutlet weak var analizeCollectionView: UICollectionView!
+    @IBOutlet weak var fscalender: FSCalendar!
     
     var presenter: AnalizePresenterProtocol?
     var listData: AddNewEntityList?
     
+    let formatter = DateFormatter()
+    private var isPageFirstTimeShown = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        //presenter?.notifyViewDidload()
         configureCollectionView()
-        presenter?.notifyViewDidload()
+        self.configureCalender()
     }
     
     func configureCollectionView() {
@@ -39,6 +44,12 @@ class AnalizeViewController: UIViewController, AnalizeViewControllerProtocol {
             self.listData = listData
             self.analizeCollectionView.reloadData()
         }
+    }
+    
+    func configureCalender() {
+//        fscalender.appearance.todayColor = .white
+        fscalender.delegate = self
+        fscalender.dataSource = self
     }
     
 }
@@ -64,4 +75,71 @@ extension AnalizeViewController: UICollectionViewDataSource, UICollectionViewDel
         
         return cell
     }
+    
+    func fetchDataForCalender(_ completion: (_ listData: AddNewEntityList) -> ()) {
+        CoreDataManager.shared.loadData { addNewEntityList in
+            self.listData = addNewEntityList
+            guard let listData = listData else {
+                return
+            }
+            completion(listData)
+        }
+    }
 }
+
+extension AnalizeViewController: FSCalendarDelegate, FSCalendarDelegateAppearance, FSCalendarDataSource {
+    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        //print(date)
+    }
+    
+//    func minimumDate(for calendar: FSCalendar) -> Date {
+//        return Date().addingTimeInterval((24*60*60)*5)
+//    }
+    
+    
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillDefaultColorFor date: Date) -> UIColor? {
+
+//        if isPageFirstTimeShown {
+//            fetchDataForCalender { listData in
+//                self.listData = listData
+//            }
+//
+//            for dater in listData?.moodDateArray ?? [] {
+//                print(dater)
+//                let testDate = dater.dateToString("dd-MM-yyyy")
+//                formatter.dateFormat = "dd-MM-yyyy"
+//
+//                guard let excludedDate = formatter.date(from: testDate) else { return nil}
+//                if date.compare(excludedDate) == .orderedSame {
+//                    return .systemBlue
+//                }
+//            }
+//        }
+        
+        fetchDataForCalender { listData in
+            self.listData = listData
+        }
+        guard let list = listData?.moodDateArray else { return UIColor() }
+        for (index, _) in list.enumerated() {
+            let testDate = list[index].dateToString("dd-MM-yyyy") 
+            formatter.dateFormat = "dd-MM-yyyy"
+            
+            guard let excludedDate = formatter.date(from: testDate) else { return nil}
+            if date.compare(excludedDate) == .orderedSame {
+                return .systemPurple
+            }
+        }
+        
+        //let testDate = listData?.moodDateArray[2].dateToString("dd-MM-yyyy") ?? "30-09-2022"
+//        formatter.dateFormat = "dd-MM-yyyy"
+//
+//        guard let excludedDate = formatter.date(from: testDate) else { return nil}
+//        if date.compare(excludedDate) == .orderedSame {
+//            return .systemBlue
+//        }
+        
+        isPageFirstTimeShown = false
+        return nil
+    }
+}
+//formatter.date(from: "30-09-2022")

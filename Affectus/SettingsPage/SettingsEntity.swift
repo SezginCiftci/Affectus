@@ -7,4 +7,7 @@
 
 import Foundation
 
-struct SettingsEntity {}
+struct SettingsEntity {
+    static let settingsCellTextArray = ["Give us star", "Do u want to give us feedback?", "Disable Affectus"]
+    static let settingsCellImage = ["feedback", "email", "exit"]
+}

@@ -10,6 +10,7 @@ import UIKit
 class SettingsCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var settingCellText: UILabel!
+    @IBOutlet weak var settingsCellImageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

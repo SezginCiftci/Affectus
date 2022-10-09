@@ -6,9 +6,10 @@
 //
 
 import UIKit
+import MessageUI
 
 protocol SettingsRouterProtocol {
-    
+    func routeToEmailCoposerVC(_ settingsVCSelf: SettingsViewController)
 }
 
 class SettingsRouter: SettingsRouterProtocol {
@@ -31,4 +32,16 @@ class SettingsRouter: SettingsRouterProtocol {
         return view
     }
 
+    func routeToEmailCoposerVC(_ settingsVCSelf: SettingsViewController) {
+        guard MFMailComposeViewController.canSendMail() else {
+            let okAction = UIAlertAction(title: "OK", style: .cancel)
+            self.view?.showAlertView(title: "Error!", message: "Something went wrong. Check your conneciton just in case.", alertActions: [okAction])
+            return
+        }
+        let composer = MFMailComposeViewController()
+        composer.mailComposeDelegate = settingsVCSelf
+        composer.setToRecipients(["sezgin0776@gmail.com"])
+        composer.setSubject("Affectus Feedback")
+        self.view?.present(composer, animated: true)
+    }
 }

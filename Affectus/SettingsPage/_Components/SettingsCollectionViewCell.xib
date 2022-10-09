@@ -18,23 +18,31 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="kWJ-b2-ksQ">
-                        <rect key="frame" x="20" y="0.0" width="280" height="130"/>
+                        <rect key="frame" x="80" y="0.0" width="220" height="130"/>
                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                         <color key="textColor" systemColor="secondarySystemBackgroundColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6ob-gi-JNx">
+                        <rect key="frame" x="8" y="10" width="64" height="110"/>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="kWJ-b2-ksQ" secondAttribute="trailing" constant="20" id="7JH-Kd-1Xa"/>
+                    <constraint firstItem="6ob-gi-JNx" firstAttribute="leading" secondItem="9hP-tg-xDg" secondAttribute="leading" constant="8" id="975-mJ-UO2"/>
                     <constraint firstItem="kWJ-b2-ksQ" firstAttribute="top" secondItem="9hP-tg-xDg" secondAttribute="top" id="AYw-Wa-COg"/>
+                    <constraint firstAttribute="bottom" secondItem="6ob-gi-JNx" secondAttribute="bottom" constant="10" id="Txs-5N-VFi"/>
+                    <constraint firstItem="kWJ-b2-ksQ" firstAttribute="leading" secondItem="6ob-gi-JNx" secondAttribute="trailing" constant="8" id="ffN-mx-CqG"/>
                     <constraint firstItem="kWJ-b2-ksQ" firstAttribute="centerY" secondItem="9hP-tg-xDg" secondAttribute="centerY" id="gEj-mP-00b"/>
                     <constraint firstAttribute="bottom" secondItem="kWJ-b2-ksQ" secondAttribute="bottom" id="gri-lP-HRF"/>
-                    <constraint firstItem="kWJ-b2-ksQ" firstAttribute="leading" secondItem="9hP-tg-xDg" secondAttribute="leading" constant="20" id="hiz-eD-rN1"/>
+                    <constraint firstItem="kWJ-b2-ksQ" firstAttribute="leading" secondItem="9hP-tg-xDg" secondAttribute="leading" constant="80" id="hiz-eD-rN1"/>
+                    <constraint firstItem="6ob-gi-JNx" firstAttribute="top" secondItem="9hP-tg-xDg" secondAttribute="top" constant="10" id="smh-nK-cNJ"/>
                 </constraints>
             </collectionViewCellContentView>
             <size key="customSize" width="209" height="50"/>
             <connections>
                 <outlet property="settingCellText" destination="kWJ-b2-ksQ" id="KJo-1H-uUZ"/>
+                <outlet property="settingsCellImageView" destination="6ob-gi-JNx" id="Zd7-tl-rc8"/>
             </connections>
             <point key="canvasLocation" x="320.28985507246381" y="42.857142857142854"/>
         </collectionViewCell>

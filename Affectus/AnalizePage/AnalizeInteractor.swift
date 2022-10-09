@@ -9,6 +9,7 @@ import Foundation
 
 protocol AnalizeInteractorProtocol {
     func fetchCoreData()
+    //func fetchDataForCalender(_ completion: AddNewEntityList)
 }
 
 class AnalizeInteractor: AnalizeInteractorProtocol {
@@ -25,4 +26,14 @@ class AnalizeInteractor: AnalizeInteractorProtocol {
             presenter?.didFetchCoreData(listData)
         }
     }
+    
+//    func fetchDataForCalender(_ completion: (_ listData: AddNewEntityList) -> ()) {
+//        CoreDataManager.shared.loadData { addNewEntityList in
+//            self.listData = addNewEntityList
+//            guard let listData = listData else {
+//                return
+//            }
+//            completion(listData)
+//        }
+//    }
 }

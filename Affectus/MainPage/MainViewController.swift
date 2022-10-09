@@ -45,7 +45,7 @@ class MainViewController: UIViewController, MainViewControllerProtocol, EditOrDe
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(didNewDataFetched(_ :)),
                                                name: .didSavedNewData,
-                                               object: nil)
+                                               object: nil)        
     }
     
     @objc func didNewDataFetched(_ notification: Notification) {
@@ -123,6 +123,7 @@ class MainViewController: UIViewController, MainViewControllerProtocol, EditOrDe
     func configureCollectionView() {
         mainCollectionView.register(UINib(nibName: "MainCell", bundle: nil),
                                 forCellWithReuseIdentifier: "MainCell")
+        mainCollectionView.register(HeaderCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderCollectionReusableView.identifier)
         mainCollectionView.delegate = self
         mainCollectionView.dataSource = self
     }
@@ -160,5 +161,21 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         
     }
     
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if let headerReusableView = (collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderCollectionReusableView.identifier, for: indexPath) as? HeaderCollectionReusableView) {
+            headerReusableView.updateHeaderView(headerReusableView.headerImage, headerReusableView.headerTitle)
+            return headerReusableView
+        }
+        return UICollectionReusableView()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: (view.frame.width), height: 200)
+    }
+                               
 }
 
