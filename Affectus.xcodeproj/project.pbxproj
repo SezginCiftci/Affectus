@@ -23,7 +23,6 @@
 		C454513728A944CB003F4A26 /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C454513628A944CB003F4A26 /* UIViewControllerExtensions.swift */; };
 		C455D63C289D556100B8DEBE /* SettingsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C455D63B289D556100B8DEBE /* SettingsCollectionViewCell.swift */; };
 		C455D641289D55B800B8DEBE /* SettingsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C455D640289D55B800B8DEBE /* SettingsCollectionViewCell.xib */; };
-		C455D644289DAF0B00B8DEBE /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = C455D643289DAF0B00B8DEBE /* Charts */; };
 		C45E070228994BC500A524FD /* PickEmotionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45E070128994BC500A524FD /* PickEmotionViewController.swift */; };
 		C45E070328994BC500A524FD /* PickEmotionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45E070128994BC500A524FD /* PickEmotionViewController.swift */; };
 		C45E070528994BD400A524FD /* PickEmotionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C45E070428994BD400A524FD /* PickEmotionViewController.xib */; };
@@ -43,6 +42,7 @@
 		C4863A9B289265FB00251BF3 /* AnalizeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4863A9A289265FB00251BF3 /* AnalizeRouter.swift */; };
 		C4863A9C289265FB00251BF3 /* AnalizeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4863A9A289265FB00251BF3 /* AnalizeRouter.swift */; };
 		C4863A9D2892743400251BF3 /* AnalizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4863A8A2892643900251BF3 /* AnalizeViewController.swift */; };
+		C49E65712924C225005A3606 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = C49E65702924C225005A3606 /* Charts */; };
 		C4A20353289110B60085AC1D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A20352289110B60085AC1D /* AppDelegate.swift */; };
 		C4A20355289110B60085AC1D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A20354289110B60085AC1D /* SceneDelegate.swift */; };
 		C4A20357289110B60085AC1D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A20356289110B60085AC1D /* ViewController.swift */; };
@@ -210,8 +210,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C455D644289DAF0B00B8DEBE /* Charts in Frameworks */,
 				C4D605A528E0789C00B7AD79 /* FSCalendar in Frameworks */,
+				C49E65712924C225005A3606 /* Charts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -479,8 +479,8 @@
 			);
 			name = Affectus;
 			packageProductDependencies = (
-				C455D643289DAF0B00B8DEBE /* Charts */,
 				C4D605A428E0789C00B7AD79 /* FSCalendar */,
+				C49E65702924C225005A3606 /* Charts */,
 			);
 			productName = Affectus;
 			productReference = C4A2034F289110B60085AC1D /* Affectus.app */;
@@ -555,8 +555,8 @@
 			);
 			mainGroup = C4A20346289110B60085AC1D;
 			packageReferences = (
-				C455D642289DAF0B00B8DEBE /* XCRemoteSwiftPackageReference "Charts" */,
 				C4D605A328E0789C00B7AD79 /* XCRemoteSwiftPackageReference "FSCalendar" */,
+				C49E656F2924C225005A3606 /* XCRemoteSwiftPackageReference "Charts" */,
 			);
 			productRefGroup = C4A20350289110B60085AC1D /* Products */;
 			projectDirPath = "";
@@ -1040,12 +1040,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		C455D642289DAF0B00B8DEBE /* XCRemoteSwiftPackageReference "Charts" */ = {
+		C49E656F2924C225005A3606 /* XCRemoteSwiftPackageReference "Charts" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/danielgindi/Charts.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.0.0;
+				branch = master;
+				kind = branch;
 			};
 		};
 		C4D605A328E0789C00B7AD79 /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
@@ -1059,9 +1059,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		C455D643289DAF0B00B8DEBE /* Charts */ = {
+		C49E65702924C225005A3606 /* Charts */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = C455D642289DAF0B00B8DEBE /* XCRemoteSwiftPackageReference "Charts" */;
+			package = C49E656F2924C225005A3606 /* XCRemoteSwiftPackageReference "Charts" */;
 			productName = Charts;
 		};
 		C4D605A428E0789C00B7AD79 /* FSCalendar */ = {
