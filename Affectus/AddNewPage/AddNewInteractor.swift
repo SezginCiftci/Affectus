@@ -9,8 +9,7 @@ import Foundation
 
 protocol AddNewInteractorProtocol {
     func saveToCoreData(_ id: UUID, _ selectedDate: Date, _ givenText: String, _ selectedEmoji: Int, _ selectedEmotions: String, _ selectedActivies: String)
-    func fetchCoreData(_ selectedId: UUID, _ localIndex: Int)
-    func saveToCoreDataWithEdit(_ id: UUID, _ selectedDate: Date, _ givenText: String, _ selectedEmoji: Int, _ selectedEmotions: String, _ selectedActivies: String, _ selectedId: UUID, _ localIndex: Int)
+    func fetchCoreData(_ localIndex: Int, _ selectedId: UUID)
 }
 
 class AddNewInteractor: AddNewInteractorProtocol {
@@ -32,30 +31,13 @@ class AddNewInteractor: AddNewInteractorProtocol {
         }
     }
     
-    func saveToCoreDataWithEdit(_ id: UUID, _ selectedDate: Date, _ givenText: String, _ selectedEmoji: Int, _ selectedEmotions: String, _ selectedActivies: String, _ selectedId: UUID, _ localIndex: Int) {
-//        CoreDataManager.shared.deleteItem(chosenId: selectedId) { addNewEntity in
-//            self.addNewEntity = addNewEntity
-//            addNewEntityList?.moodDescribeArray.remove(at: localIndex)
-//            addNewEntityList?.activitySelectionArray.remove(at: localIndex)
-//            addNewEntityList?.moodDateArray.remove(at: localIndex)
-//            addNewEntityList?.moodEmojiArray.remove(at: localIndex)
-//            addNewEntityList?.notesTextArray.remove(at: localIndex)
-//            addNewEntityList?.idArray.remove(at: localIndex)
-//        } onSuccess: {
-//
-//        } onError: {
-//            print("something went wrong")
-//        }
-
-    }
-    
-    func fetchCoreData(_ selectedId: UUID, _ localIndex: Int) {
+    func fetchCoreData(_ localIndex: Int, _ selectedId: UUID) {
         CoreDataManager.shared.loadData { [weak self] addNewEntityList in
             guard let self = self else { return }
             self.addNewEntityList = addNewEntityList
-            DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            DispatchQueue.global().async { [weak self] in
                 guard let self = self else { return }
-                self.presenter?.notifyEditableDataFetched(addNewEntityList, localIndex)
+                self.presenter?.notifyDidFetchData(addNewEntityList, localIndex, selectedId)
             }
         }
     }

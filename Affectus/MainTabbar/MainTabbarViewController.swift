@@ -78,7 +78,7 @@ class MainTabbarViewController: UITabBarController {
     @objc private func handlePlusButton() {
         let addVC = AddNewRouter.createModule()
         addVC.modalPresentationStyle = .fullScreen
-        addVC.isEditButtonTapped = false
+        addVC.isShowButtonTapped = false
         present(addVC, animated: true)
     }
 }

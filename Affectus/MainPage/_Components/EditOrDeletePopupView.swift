@@ -8,7 +8,7 @@
 import UIKit
 
 protocol EditOrDeleteViewDelegate {
-    func editButtonTapped(_ selectedId: UUID)
+    func showButtonTapped(_ selectedId: UUID)
     func deleteButtonTapped(_ selectedId: UUID)
     func dismissView()
 }
@@ -47,7 +47,7 @@ class EditOrDeletePopupView: UIView {
         guard let selectedId = selectedId else {
             return
         }
-        editOrDeleteDelegate?.editButtonTapped(selectedId)
+        editOrDeleteDelegate?.showButtonTapped(selectedId)
     }
     
     @IBAction func deleteButtonAct(_ sender: Any) {

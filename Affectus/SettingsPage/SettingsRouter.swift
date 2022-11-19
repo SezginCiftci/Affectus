@@ -10,6 +10,7 @@ import MessageUI
 
 protocol SettingsRouterProtocol {
     func routeToEmailCoposerVC(_ settingsVCSelf: SettingsViewController)
+    func routeToAppStore() 
 }
 
 class SettingsRouter: SettingsRouterProtocol {
@@ -43,5 +44,9 @@ class SettingsRouter: SettingsRouterProtocol {
         composer.setToRecipients(["sezgin0776@gmail.com"])
         composer.setSubject("Affectus Feedback")
         self.view?.present(composer, animated: true)
+    }
+    
+    func routeToAppStore() {
+        //TODO: - Routing AppStore
     }
 }

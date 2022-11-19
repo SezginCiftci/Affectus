@@ -38,6 +38,19 @@
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nRY-pC-Fqk">
+                    <rect key="frame" x="338" y="54" width="56" height="37"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="37" id="BgE-P8-Y4j"/>
+                        <constraint firstAttribute="width" constant="56" id="ZbA-46-jmR"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" image="info.circle.fill" catalog="system"/>
+                    <buttonConfiguration key="configuration" style="plain" image="info.circle" catalog="system"/>
+                    <connections>
+                        <action selector="infoButtonAct:" destination="-1" eventType="touchUpInside" id="fEa-ZU-GuU"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="0KQ-8e-Fd9"/>
             <color key="backgroundColor" name="backgroundColour"/>
@@ -47,12 +60,16 @@
                 <constraint firstItem="Hzp-ge-29R" firstAttribute="leading" secondItem="0KQ-8e-Fd9" secondAttribute="leading" id="Czn-tF-jeL"/>
                 <constraint firstItem="Hzp-ge-29R" firstAttribute="top" secondItem="Xny-yi-Sv0" secondAttribute="bottom" constant="25" id="Mw8-AT-Dwy"/>
                 <constraint firstItem="Xny-yi-Sv0" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="O6R-EB-efa"/>
+                <constraint firstItem="0KQ-8e-Fd9" firstAttribute="trailing" secondItem="nRY-pC-Fqk" secondAttribute="trailing" constant="20" id="XS9-AN-D57"/>
+                <constraint firstItem="nRY-pC-Fqk" firstAttribute="top" secondItem="0KQ-8e-Fd9" secondAttribute="top" constant="10" id="nb1-ep-cW9"/>
                 <constraint firstItem="Xny-yi-Sv0" firstAttribute="top" secondItem="0KQ-8e-Fd9" secondAttribute="top" constant="10" id="sYA-GQ-ZeW"/>
             </constraints>
             <point key="canvasLocation" x="131.8840579710145" y="109.82142857142857"/>
         </view>
     </objects>
     <resources>
+        <image name="info.circle" catalog="system" width="128" height="121"/>
+        <image name="info.circle.fill" catalog="system" width="128" height="121"/>
         <namedColor name="backgroundColour">
             <color red="0.85900002717971802" green="0.91399997472763062" blue="0.9649999737739563" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

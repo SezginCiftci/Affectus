@@ -11,9 +11,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddNewViewController" customModule="Affectus" customModuleProvider="target">
             <connections>
+                <outlet property="addNewActivity" destination="F9b-Ge-hf1" id="8hd-we-WXI"/>
+                <outlet property="addNewDescribe" destination="IQw-Ki-aCi" id="hMb-ts-Gbx"/>
                 <outlet property="addNewTextView" destination="krp-7t-wFW" id="gjR-Mh-BIJ"/>
                 <outlet property="charCountLabel" destination="W8B-yX-0C7" id="iNH-CE-q3e"/>
                 <outlet property="dateButton" destination="QLO-6r-UtA" id="dij-HB-62O"/>
+                <outlet property="saveButton" destination="YcW-S1-5xx" id="xgJ-fh-V1v"/>
                 <outlet property="selectedActivityLabel" destination="uf5-M8-DrI" id="xyg-U8-Lb2"/>
                 <outlet property="selectedEmotionsLabel" destination="S3U-sx-qmB" id="fjF-g3-wYf"/>
                 <outlet property="view" destination="iN0-l3-epB" id="Roh-WH-rVe"/>

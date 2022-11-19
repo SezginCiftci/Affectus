@@ -10,16 +10,15 @@ import Foundation
 protocol AddNewPresenterProtocol: AnyObject {
     func notifyBackButtonTapped()
     func notifySaveButtonTapped(_ id: UUID, _ selectedDate: Date, _ givenText: String, _ selectedEmoji: Int, _ selectedEmotions: String, _ selectedActivies: String)
-    func notifySaveButtonTappedWithEdit(_ id: UUID, _ selectedDate: Date, _ givenText: String, _ selectedEmoji: Int, _ selectedEmotions: String, _ selectedActivies: String, _ selectedId: UUID, _ localIndex: Int)
     func notifyPickEmotionAndActivityButtonTapped(_ selectedEntity: [String], _ self: AddNewViewController)
     func notifyDateButtonTapped(_ self: AddNewViewController)
-    func notifyEditButtonTapped(_ selectedId: UUID, _ localIndex: Int)
+    func notifyShowButtonTapped(_ localIndex: Int, _ selectedId: UUID)
 }
 
 protocol AddNewInteractorOutputProtocol: AnyObject {
     func didSaveDataWithSuccess()
     func didSaveDataWithError()
-    func notifyEditableDataFetched(_ listData: AddNewEntityList, _ localIndex: Int)
+    func notifyDidFetchData(_ entity: AddNewEntityList, _ localIndex: Int, _ selectedId: UUID)
 }
 
 class AddNewPresenter: AddNewPresenterProtocol {
@@ -31,8 +30,8 @@ class AddNewPresenter: AddNewPresenterProtocol {
         interactor?.saveToCoreData(id, selectedDate, givenText, selectedEmoji, selectedEmotions, selectedActivies)
     }
     
-    func notifySaveButtonTappedWithEdit(_ id: UUID, _ selectedDate: Date, _ givenText: String, _ selectedEmoji: Int, _ selectedEmotions: String, _ selectedActivies: String, _ selectedId: UUID, _ localIndex: Int) {
-        interactor?.saveToCoreDataWithEdit(id, selectedDate, givenText, selectedEmoji, selectedEmotions, selectedActivies, selectedId, localIndex)
+    func notifyShowButtonTapped(_ localIndex: Int, _ selectedId: UUID) {
+        interactor?.fetchCoreData(localIndex, selectedId)
     }
     
     func notifyDateButtonTapped(_ self: AddNewViewController) {
@@ -47,10 +46,6 @@ class AddNewPresenter: AddNewPresenterProtocol {
         router?.routeToPickEmotionView(selectedEntity, self)
     }
     
-    func notifyEditButtonTapped(_ selectedId: UUID, _ localIndex: Int) {
-        interactor?.fetchCoreData(selectedId, localIndex)
-    }
-    
 }
 
 extension AddNewPresenter: AddNewInteractorOutputProtocol {
@@ -63,13 +58,17 @@ extension AddNewPresenter: AddNewInteractorOutputProtocol {
         view?.saveDataFailed()
     }
     
-    func notifyEditableDataFetched(_ listData: AddNewEntityList, _ localIndex: Int) {
-        DispatchQueue.main.async {
-            self.view?.loadDataWithEdition(listData.moodDateArray[localIndex],
-                                           listData.notesTextArray[localIndex],
-                                           listData.moodEmojiArray[localIndex],
-                                           listData.moodDescribeArray[localIndex],
-                                           listData.activitySelectionArray[localIndex])
-        }
+    func notifyDidFetchData(_ entity: AddNewEntityList, _ localIndex: Int, _ selectedId: UUID) {
+        setAddNewPageData(entity, localIndex)
     }
+    
+    func setAddNewPageData(_ entities: AddNewEntityList, _ localIndex: Int) {
+        view?.loadCoreData(noteText: entities.notesTextArray[localIndex],
+                           moodEmoji: entities.moodEmojiArray[localIndex],
+                           moodDescribe: entities.moodDescribeArray[localIndex],
+                           moodActivity: entities.activitySelectionArray[localIndex],
+                           moodDate: entities.moodDateArray[localIndex],
+                           id: entities.idArray[localIndex])
+    }
+    
 }

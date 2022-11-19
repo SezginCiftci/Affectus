@@ -9,7 +9,8 @@ import UIKit
 import MessageUI
 
 protocol SettingsViewControllerProtocol: AnyObject {
-    
+    func deletedAllSuccess()
+    func deletedAllError()
 }
 
 class SettingsViewController: UIViewController, SettingsViewControllerProtocol {
@@ -22,11 +23,13 @@ class SettingsViewController: UIViewController, SettingsViewControllerProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
+        addGestureRecognizerImageView()
+        addAvatarObserver()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        settingsProfileImageView.image = generateProfileImageView()
+        configureProfileImage()
     }
     
     func configureCollectionView() {
@@ -36,8 +39,33 @@ class SettingsViewController: UIViewController, SettingsViewControllerProtocol {
         settingsCollectionView.dataSource = self
     }
     
-    func generateProfileImageView() -> UIImage {
-        return UIImage(named: "philosopher-\(String(Int.random(in: 1...10)))") ?? UIImage()
+    func addAvatarObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(configureProfileImage), name: Notification.Name("Avatar Selected"), object: nil)
+
+    }
+    
+    func addGestureRecognizerImageView() {
+        let gestureReconizer = UITapGestureRecognizer(target: self, action: #selector(gestureTapped))
+        settingsProfileImageView.isUserInteractionEnabled = true
+        settingsProfileImageView.addGestureRecognizer(gestureReconizer)
+    }
+    
+    @objc func gestureTapped() {
+        let avatarVC = AvatarPickViewController()
+        present(avatarVC, animated: true)
+    }
+    
+    @objc func configureProfileImage() {
+        let savedAvatar = UserDefaults.standard.integer(forKey: "Avatar")
+        if savedAvatar == 0 {
+            settingsProfileImageView.image = generateRandomProfileImageView()
+        } else {
+            settingsProfileImageView.image = UIImage(named: "avatar-\(String(savedAvatar))")
+        }
+    }
+    
+    func generateRandomProfileImageView() -> UIImage {
+        return UIImage(named: "avatar-\(String(Int.random(in: 1...12)))") ?? UIImage()
     }
     
     func didGiveUsStarCellTapped() {
@@ -49,9 +77,30 @@ class SettingsViewController: UIViewController, SettingsViewControllerProtocol {
     }
     
     func didDisableAffectusCellTapped() {
-        presenter?.notifyDisableCellTapped()
+        let okAction = UIAlertAction(title: "Yes, I am", style: .default) { _ in
+            let okButton = UIAlertAction(title: "OK", style: .default) { _ in
+                self.presenter?.notifyDisableCellTapped()
+            }
+            self.showAlertView(title: "Goodbye...", message: "You can come here anytime you like.", alertActions: [okButton])
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        self.showAlertView(title: "Are You Sure?", message: "All information you gave, will be deleted. We are gonna miss you :(", alertActions: [cancelAction, okAction])
     }
     
+    func deletedAllSuccess() {
+        animateWithImage("checked")
+    }
+    
+    func deletedAllError() {
+        animateWithImage("cancel")
+    }
+    
+    @IBAction func infoButtonAct(_ sender: UIButton) {
+        let infoVC = InfoViewController(.settingInfo)
+        infoVC.modalTransitionStyle = .crossDissolve
+        infoVC.modalPresentationStyle = .overCurrentContext
+        present(infoVC, animated: true)
+    }
 }
 
 extension SettingsViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -74,7 +123,7 @@ extension SettingsViewController: UICollectionViewDataSource, UICollectionViewDe
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch indexPath.row {
         case 0:
-            didGiveFeedbackCellTapped()
+            didGiveUsStarCellTapped()
         case 1:
             didGiveFeedbackCellTapped()
         case 2:
@@ -94,18 +143,16 @@ extension SettingsViewController: MFMailComposeViewControllerDelegate {
         
         switch result {
         case .cancelled:
-            print("canceled")
+            animateWithImage("cancel")
         case .saved:
             print("saved")
         case .sent:
-            self.animateWithImage("checked")
-            print("sent")
+            animateWithImage("checked")
         case .failed:
-            print("failed")
+            animateWithImage("cancel")
         @unknown default:
             fatalError()
         }
-        
         controller.dismiss(animated: true)
     }
 }

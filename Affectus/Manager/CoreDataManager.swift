@@ -131,4 +131,37 @@ struct CoreDataManager {
 
         }
     }
+    
+    func deleteAllItems(completion: ((_ addNewEntity: AddNewEntityList) -> ()), onSuccess: () -> (), onError: () -> ()) {
+
+        let addNewEntity = AddNewEntityList()
+
+        let appDelagate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelagate.persistentContainer.viewContext
+
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "AffectusMood")
+
+        //fetchRequest.predicate = NSPredicate(format: "id = %@", idString)
+        fetchRequest.returnsObjectsAsFaults = false
+
+        do {
+            let results = try context.fetch(fetchRequest)
+            if results.count >= 0 {
+                
+                for result in results as! [NSManagedObject] {
+                    context.delete(result)
+                    completion(addNewEntity)
+                    do {
+                        try context.save()
+                        onSuccess()
+                    } catch {
+                        onError()
+                    }
+                }
+            }
+
+        } catch {
+
+        }
+    }
 }

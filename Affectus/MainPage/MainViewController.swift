@@ -32,6 +32,7 @@ class MainViewController: UIViewController, MainViewControllerProtocol, EditOrDe
         super.viewDidLoad()
         presenter?.notifyViewDidLoad()
         configureUI()
+        saveUserPassedOnboarding()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(didNewDataFetched(_ :)),
                                                name: .didSavedNewData,
@@ -46,6 +47,10 @@ class MainViewController: UIViewController, MainViewControllerProtocol, EditOrDe
                                                selector: #selector(didNewDataFetched(_ :)),
                                                name: .didSavedNewData,
                                                object: nil)        
+    }
+    
+    func saveUserPassedOnboarding() {
+        UserDefaults.standard.set(true, forKey: "UserPassedOnboarding")
     }
     
     @objc func didNewDataFetched(_ notification: Notification) {
@@ -87,10 +92,9 @@ class MainViewController: UIViewController, MainViewControllerProtocol, EditOrDe
         }
     }
     
-    func editButtonTapped(_ selectedId: UUID) {
+    func showButtonTapped(_ selectedId: UUID) {
         guard let localIndex = localIndex else { return }
-        presenter?.notifyEditButtonTapped(selectedId, localIndex)
-        
+        presenter?.notifyShowButtonTapped(selectedId, localIndex)
         editView.removeFromSuperview()
         tabBarController?.tabBar.isUserInteractionEnabled = true
         tabBarController?.tabBar.isHidden = false
@@ -127,7 +131,15 @@ class MainViewController: UIViewController, MainViewControllerProtocol, EditOrDe
         mainCollectionView.delegate = self
         mainCollectionView.dataSource = self
     }
-
+    
+    
+    @IBAction func infoButtonAct(_ sender: UIButton) {
+        let infoVC = InfoViewController(.homeInfo)
+        infoVC.modalTransitionStyle = .crossDissolve
+        infoVC.modalPresentationStyle = .overCurrentContext
+        present(infoVC, animated: true)
+    }
+    
 }
 extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     

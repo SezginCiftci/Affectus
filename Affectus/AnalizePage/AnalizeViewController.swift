@@ -51,7 +51,12 @@ class AnalizeViewController: UIViewController, AnalizeViewControllerProtocol {
         fscalender.delegate = self
         fscalender.dataSource = self
     }
-    
+    @IBAction func infoButtonAct(_ sender: UIButton) {
+        let infoVC = InfoViewController(.analizeInfo)
+        infoVC.modalTransitionStyle = .crossDissolve
+        infoVC.modalPresentationStyle = .overCurrentContext
+        present(infoVC, animated: true)
+    }
 }
 
 extension AnalizeViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {

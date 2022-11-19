@@ -14,7 +14,7 @@ class HeaderCollectionReusableView: UICollectionReusableView {
     private var headerView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 25
-        view.backgroundColor = .secondarySystemBackground
+        view.backgroundColor = .white
         return view
     }()
     

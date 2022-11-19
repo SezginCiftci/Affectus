@@ -13,7 +13,7 @@ protocol MainPresenterProtocol: AnyObject {
     func notifyViewWillDisappear()
     
     func notifyAnalizeTapped()
-    func notifyEditButtonTapped(_ selectedId: UUID, _ localIndex: Int)
+    func notifyShowButtonTapped(_ selectedId: UUID, _ localIndex: Int)
     func notifyDeleteButtonTapped(_ selectedId: UUID, _ itemIndex: Int)
 }
 
@@ -49,7 +49,7 @@ class MainPresenter: MainPresenterProtocol {
         router?.routeToAnalizeVC()
     }
     
-    func notifyEditButtonTapped(_ selectedId: UUID, _ localIndex: Int) {
+    func notifyShowButtonTapped(_ selectedId: UUID, _ localIndex: Int) {
         router?.routeToAddNewVC(selectedId, localIndex)
     }
     

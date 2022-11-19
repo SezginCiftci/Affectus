@@ -42,7 +42,14 @@
 		C4863A9B289265FB00251BF3 /* AnalizeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4863A9A289265FB00251BF3 /* AnalizeRouter.swift */; };
 		C4863A9C289265FB00251BF3 /* AnalizeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4863A9A289265FB00251BF3 /* AnalizeRouter.swift */; };
 		C4863A9D2892743400251BF3 /* AnalizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4863A8A2892643900251BF3 /* AnalizeViewController.swift */; };
+		C494DD2F29262884000B9245 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C494DD2E29262884000B9245 /* InfoViewController.swift */; };
 		C49E65712924C225005A3606 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = C49E65702924C225005A3606 /* Charts */; };
+		C49E65732924FAA3005A3606 /* AvatarPickViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49E65722924FAA3005A3606 /* AvatarPickViewController.swift */; };
+		C49E65752924FADD005A3606 /* AvatarPickViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C49E65742924FADD005A3606 /* AvatarPickViewController.xib */; };
+		C49E65772925030B005A3606 /* AvatarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49E65762925030B005A3606 /* AvatarCollectionViewCell.swift */; };
+		C49E657929250326005A3606 /* AvatarCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C49E657829250326005A3606 /* AvatarCollectionViewCell.xib */; };
+		C49E657B29255D60005A3606 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49E657A29255D60005A3606 /* SplashViewController.swift */; };
+		C49E657D29255D7F005A3606 /* SplashScreenItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49E657C29255D7F005A3606 /* SplashScreenItem.swift */; };
 		C4A20353289110B60085AC1D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A20352289110B60085AC1D /* AppDelegate.swift */; };
 		C4A20355289110B60085AC1D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A20354289110B60085AC1D /* SceneDelegate.swift */; };
 		C4A20357289110B60085AC1D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A20356289110B60085AC1D /* ViewController.swift */; };
@@ -97,7 +104,6 @@
 		C4A203D32891509D0085AC1D /* MainCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4A203D12891509D0085AC1D /* MainCell.xib */; };
 		C4C1E5B4289EDD1A00C00C01 /* AnalizeChartView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4C1E5B3289EDD1A00C00C01 /* AnalizeChartView.xib */; };
 		C4C1E5B7289EDD4200C00C01 /* AnalizeChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C1E5B6289EDD4200C00C01 /* AnalizeChartView.swift */; };
-		C4C4031328C372DA00DDD734 /* ListDataSortingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C4031228C372DA00DDD734 /* ListDataSortingHelper.swift */; };
 		C4D605A528E0789C00B7AD79 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = C4D605A428E0789C00B7AD79 /* FSCalendar */; };
 		C4E3E9CD28A3995200C994A3 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E3E9CC28A3995200C994A3 /* CoreDataManager.swift */; };
 		C4E3E9CE28A3995200C994A3 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E3E9CC28A3995200C994A3 /* CoreDataManager.swift */; };
@@ -154,6 +160,13 @@
 		C4863A94289265E000251BF3 /* AnalizeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalizeInteractor.swift; sourceTree = "<group>"; };
 		C4863A97289265EE00251BF3 /* AnalizeEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalizeEntity.swift; sourceTree = "<group>"; };
 		C4863A9A289265FB00251BF3 /* AnalizeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalizeRouter.swift; sourceTree = "<group>"; };
+		C494DD2E29262884000B9245 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		C49E65722924FAA3005A3606 /* AvatarPickViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarPickViewController.swift; sourceTree = "<group>"; };
+		C49E65742924FADD005A3606 /* AvatarPickViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AvatarPickViewController.xib; sourceTree = "<group>"; };
+		C49E65762925030B005A3606 /* AvatarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarCollectionViewCell.swift; sourceTree = "<group>"; };
+		C49E657829250326005A3606 /* AvatarCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AvatarCollectionViewCell.xib; sourceTree = "<group>"; };
+		C49E657A29255D60005A3606 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		C49E657C29255D7F005A3606 /* SplashScreenItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenItem.swift; sourceTree = "<group>"; };
 		C4A2034F289110B60085AC1D /* Affectus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Affectus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4A20352289110B60085AC1D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C4A20354289110B60085AC1D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -192,7 +205,6 @@
 		C4A203D12891509D0085AC1D /* MainCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainCell.xib; sourceTree = "<group>"; };
 		C4C1E5B3289EDD1A00C00C01 /* AnalizeChartView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnalizeChartView.xib; sourceTree = "<group>"; };
 		C4C1E5B6289EDD4200C00C01 /* AnalizeChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalizeChartView.swift; sourceTree = "<group>"; };
-		C4C4031228C372DA00DDD734 /* ListDataSortingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDataSortingHelper.swift; sourceTree = "<group>"; };
 		C4E3E9CC28A3995200C994A3 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		C4E3E9D028A4395800C994A3 /* PickEmotionCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PickEmotionCollectionViewCell.xib; sourceTree = "<group>"; };
 		C4FF24E028BA882E008BB7DE /* JournalPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalPageViewController.swift; sourceTree = "<group>"; };
@@ -258,6 +270,10 @@
 		C455D63D289D558B00B8DEBE /* _Components */ = {
 			isa = PBXGroup;
 			children = (
+				C49E65762925030B005A3606 /* AvatarCollectionViewCell.swift */,
+				C49E657829250326005A3606 /* AvatarCollectionViewCell.xib */,
+				C49E65722924FAA3005A3606 /* AvatarPickViewController.swift */,
+				C49E65742924FADD005A3606 /* AvatarPickViewController.xib */,
 				C455D63B289D556100B8DEBE /* SettingsCollectionViewCell.swift */,
 				C455D640289D55B800B8DEBE /* SettingsCollectionViewCell.xib */,
 			);
@@ -285,6 +301,15 @@
 				C4863A9A289265FB00251BF3 /* AnalizeRouter.swift */,
 			);
 			path = AnalizePage;
+			sourceTree = "<group>";
+		};
+		C49E657E29255DA3005A3606 /* SplashScreen */ = {
+			isa = PBXGroup;
+			children = (
+				C49E657A29255D60005A3606 /* SplashViewController.swift */,
+				C49E657C29255D7F005A3606 /* SplashScreenItem.swift */,
+			);
+			path = SplashScreen;
 			sourceTree = "<group>";
 		};
 		C4A20346289110B60085AC1D = {
@@ -322,6 +347,7 @@
 				C4FF24E228BA8837008BB7DE /* JournalPage */,
 				C4A203B928912FE50085AC1D /* AddNewPage */,
 				C4A203A628912D940085AC1D /* SettingsPage */,
+				C49E657E29255DA3005A3606 /* SplashScreen */,
 				C4A20358289110B60085AC1D /* Main.storyboard */,
 				C4A2035E289110B70085AC1D /* Assets.xcassets */,
 				C4A20360289110B70085AC1D /* LaunchScreen.storyboard */,
@@ -414,8 +440,8 @@
 				C43FF6E32897A88300BFA61B /* EditOrDeletePopupView.xib */,
 				C4A203CD289150760085AC1D /* MainCell.swift */,
 				C4A203D12891509D0085AC1D /* MainCell.xib */,
-				C4C4031228C372DA00DDD734 /* ListDataSortingHelper.swift */,
 				C44ED5BC28F2C98B00DC9265 /* ReusableView.swift */,
+				C494DD2E29262884000B9245 /* InfoViewController.swift */,
 			);
 			path = _Components;
 			sourceTree = "<group>";
@@ -577,9 +603,11 @@
 				C4A20362289110B70085AC1D /* LaunchScreen.storyboard in Resources */,
 				C4E3E9D128A4395800C994A3 /* PickEmotionCollectionViewCell.xib in Resources */,
 				C4FF24EE28BA8F21008BB7DE /* JournalPageCollectionCell.xib in Resources */,
+				C49E657929250326005A3606 /* AvatarCollectionViewCell.xib in Resources */,
 				C4A2035F289110B70085AC1D /* Assets.xcassets in Resources */,
 				C4A2035A289110B60085AC1D /* Main.storyboard in Resources */,
 				C455D641289D55B800B8DEBE /* SettingsCollectionViewCell.xib in Resources */,
+				C49E65752924FADD005A3606 /* AvatarPickViewController.xib in Resources */,
 				C45E070528994BD400A524FD /* PickEmotionViewController.xib in Resources */,
 				C4A20396289114340085AC1D /* MainViewController.xib in Resources */,
 				C4A203A828912DA80085AC1D /* SettingsViewController.xib in Resources */,
@@ -630,8 +658,10 @@
 				C4A20357289110B60085AC1D /* ViewController.swift in Sources */,
 				C4A2038A2891119F0085AC1D /* MainPresenter.swift in Sources */,
 				C4A203C4289130D50085AC1D /* AddNewEntity.swift in Sources */,
+				C49E657D29255D7F005A3606 /* SplashScreenItem.swift in Sources */,
 				C4FF24EA28BA8963008BB7DE /* JournalPageEntity.swift in Sources */,
 				C454513728A944CB003F4A26 /* UIViewControllerExtensions.swift in Sources */,
+				C49E657B29255D60005A3606 /* SplashViewController.swift in Sources */,
 				C4E3E9CD28A3995200C994A3 /* CoreDataManager.swift in Sources */,
 				C4A203A428912D760085AC1D /* SettingsViewController.swift in Sources */,
 				C4863A92289265CD00251BF3 /* AnalizePresenter.swift in Sources */,
@@ -643,6 +673,7 @@
 				C4FF24E828BA88F6008BB7DE /* JournalPageInteractor.swift in Sources */,
 				C4863A9B289265FB00251BF3 /* AnalizeRouter.swift in Sources */,
 				C4863A8B2892643900251BF3 /* AnalizeViewController.swift in Sources */,
+				C494DD2F29262884000B9245 /* InfoViewController.swift in Sources */,
 				C4A20355289110B60085AC1D /* SceneDelegate.swift in Sources */,
 				C4A203B728912FDB0085AC1D /* AddNewViewController.swift in Sources */,
 				C4FF24F128BA8FA7008BB7DE /* JournalPageCollectionCell.swift in Sources */,
@@ -664,12 +695,13 @@
 				C4A20393289111C10085AC1D /* MainRouter.swift in Sources */,
 				C43FF6E12897A87200BFA61B /* EditOrDeletePopupView.swift in Sources */,
 				C44ED5BD28F2C98B00DC9265 /* ReusableView.swift in Sources */,
-				C4C4031328C372DA00DDD734 /* ListDataSortingHelper.swift in Sources */,
 				C4A2039928912A400085AC1D /* MainTabbarViewController.swift in Sources */,
 				C4A203AB28912DB80085AC1D /* SettingsPresenter.swift in Sources */,
 				C45E070A2899555700A524FD /* PickEmotionCollectionViewCell.swift in Sources */,
 				C4A203B128912DD60085AC1D /* SettingsEntity.swift in Sources */,
 				C454513528A91A56003F4A26 /* PickEmotionEntity.swift in Sources */,
+				C49E65732924FAA3005A3606 /* AvatarPickViewController.swift in Sources */,
+				C49E65772925030B005A3606 /* AvatarCollectionViewCell.swift in Sources */,
 				C4FF24EC28BA898E008BB7DE /* JournalPageRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

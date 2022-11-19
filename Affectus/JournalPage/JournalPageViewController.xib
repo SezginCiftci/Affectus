@@ -39,13 +39,28 @@
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y8A-3n-AxS">
+                    <rect key="frame" x="338" y="54" width="56" height="37"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="37" id="k8U-xU-GLW"/>
+                        <constraint firstAttribute="width" constant="56" id="x9y-5h-hZk"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" image="info.circle" catalog="system"/>
+                    <buttonConfiguration key="configuration" style="plain" image="info.circle" catalog="system"/>
+                    <connections>
+                        <action selector="infoButtonAct:" destination="-1" eventType="touchUpInside" id="WZ6-7J-oGV"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" name="backgroundColour"/>
             <constraints>
                 <constraint firstItem="mRT-g4-t3A" firstAttribute="top" secondItem="pUa-oD-9ou" secondAttribute="bottom" constant="30" id="LTI-gM-Hcx"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="mRT-g4-t3A" secondAttribute="trailing" id="MEG-kQ-6X5"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="y8A-3n-AxS" secondAttribute="trailing" constant="20" id="S71-yp-xWp"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="mRT-g4-t3A" secondAttribute="bottom" id="YlZ-mP-Bfa"/>
+                <constraint firstItem="y8A-3n-AxS" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="eu1-M8-sMs"/>
                 <constraint firstItem="pUa-oD-9ou" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="ufQ-9e-9dV"/>
                 <constraint firstItem="pUa-oD-9ou" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="zJe-Ar-4Sh"/>
                 <constraint firstItem="mRT-g4-t3A" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="zul-RE-Zfc"/>
@@ -54,6 +69,7 @@
         </view>
     </objects>
     <resources>
+        <image name="info.circle" catalog="system" width="128" height="121"/>
         <namedColor name="backgroundColour">
             <color red="0.85900002717971802" green="0.91399997472763062" blue="0.9649999737739563" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

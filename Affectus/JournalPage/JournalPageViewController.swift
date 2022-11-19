@@ -56,6 +56,14 @@ class JournalPageViewController: UIViewController, JournalPageViewControllerProt
             return CGSize(width: collectionView.frame.width - 50, height: 200)
         }
     }
+    
+    @IBAction func infoButtonAct(_ sender: UIButton) {
+        let infoVC = InfoViewController(.journalInfo)
+        infoVC.modalTransitionStyle = .crossDissolve
+        infoVC.modalPresentationStyle = .overCurrentContext
+        present(infoVC, animated: true)
+    }
+    
 }
 
 extension JournalPageViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {

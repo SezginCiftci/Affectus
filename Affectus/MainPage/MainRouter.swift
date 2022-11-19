@@ -46,7 +46,8 @@ class MainRouter: MainRouterProtocol {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             let addNew = AddNewRouter.createModule()
-            addNew.editionIdAndIndex = (a: selectedId, b: localIndex)
+            addNew.isShowButtonTapped = true
+            addNew.showIndexes = (a: localIndex, b: selectedId)
             addNew.modalPresentationStyle = .fullScreen
             self.view?.present(addNew, animated: true)
         }

@@ -10,11 +10,7 @@ import UIKit
 protocol AddNewViewControllerProtocol: AnyObject {
     func dismissViewController()
     func saveDataFailed()
-    func loadDataWithEdition(_ moodDate: Date,
-                             _ noteText: String,
-                             _ moodEmoji: Int,
-                             _ emotionSelection: String,
-                             _ activitySelection: String)
+    func loadCoreData(noteText: String, moodEmoji: Int, moodDescribe: String, moodActivity: String, moodDate: Date, id: UUID)
 }
 
 class AddNewViewController: UIViewController, AddNewViewControllerProtocol, DatePickViewDelegate {
@@ -25,21 +21,16 @@ class AddNewViewController: UIViewController, AddNewViewControllerProtocol, Date
     @IBOutlet weak var selectedEmotionsLabel: UILabel!
     @IBOutlet weak var selectedActivityLabel: UILabel!
     @IBOutlet weak var charCountLabel: UILabel!
+    @IBOutlet weak var addNewActivity: UIButton!
+    @IBOutlet weak var addNewDescribe: UIButton!
+    @IBOutlet weak var saveButton: UIButton!
     
     var presenter: AddNewPresenterProtocol?
 
-    var didPickEmotionButtonTapped: Bool = false    
+    var didPickEmotionButtonTapped: Bool = false
+    var isShowButtonTapped: Bool = false
     var chosenDate: Date?
-    
-    var isEditButtonTapped: Bool = false
-    var editionIdAndIndex: (a: UUID, b: Int)? {
-        didSet {
-            if let editionId = editionIdAndIndex?.a, let editionIndex = editionIdAndIndex?.b {
-                presenter?.notifyEditButtonTapped(editionId, editionIndex)
-                isEditButtonTapped = true
-            }
-        }
-    }
+    var showIndexes : (Int, UUID)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,23 +39,53 @@ class AddNewViewController: UIViewController, AddNewViewControllerProtocol, Date
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        checkShowButtonTapped()
     }
     
-    func loadDataWithEdition(_ moodDate: Date,
-                             _ noteText: String,
-                             _ moodEmoji: Int,
-                             _ emotionSelection: String,
-                             _ activitySelection: String) {
-        dateButton.setTitle(moodDate.dateToString("d MMM "), for: .normal)
-        addNewTextView.text = noteText
-        emojiButtons[moodEmoji].alpha = 0.5
-        selectedEmotionsLabel.text = emotionSelection
-        selectedActivityLabel.text = activitySelection
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        isShowButtonTapped = false
+    }
+    
+    func loadCoreData(noteText: String, moodEmoji: Int, moodDescribe: String, moodActivity: String, moodDate: Date, id: UUID) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.addNewTextView.text = noteText
+            self.selectedEmotionsLabel.text = moodDescribe
+            self.selectedActivityLabel.text = moodActivity
+            self.dateButton.setTitle(moodDate.dateToString("d MMM "), for: .normal)
+            self.emojiButtons[moodEmoji].alpha = 0.5
+            for emojiButton in self.emojiButtons {
+                emojiButton.isUserInteractionEnabled = false
+            }
+            self.addNewTextView.isUserInteractionEnabled = false
+            self.addNewActivity.isUserInteractionEnabled = false
+            self.addNewDescribe.isUserInteractionEnabled = false
+            self.saveButton.isHidden = true
+        }
+    }
+    
+    func checkShowButtonTapped() {
+        if isShowButtonTapped {
+            if let showIndexes = showIndexes {
+                presenter?.notifyShowButtonTapped(showIndexes.0, showIndexes.1)
+            }
+        }
     }
     
     func configureUI() {
         configureKeyboard()
-        dateButton.setTitle(Date.now.dateToString("d MMM "), for: .normal)
+        dateButton.isUserInteractionEnabled = false
+        if !isShowButtonTapped {
+            dateButton.setTitle(Date.now.dateToString("d MMM "), for: .normal)
+            for emojiButton in emojiButtons {
+                emojiButton.isUserInteractionEnabled = true
+            }
+            addNewTextView.isUserInteractionEnabled = true
+            addNewActivity.isUserInteractionEnabled = true
+            addNewDescribe.isUserInteractionEnabled = true
+            saveButton.isHidden = false
+        }
     }
     
     func configureKeyboard() {
@@ -86,11 +107,15 @@ class AddNewViewController: UIViewController, AddNewViewControllerProtocol, Date
     }
     
     @IBAction func exitButtonAct(_ sender: UIButton) {
-        let okButton = UIAlertAction(title: "OK", style: .default) { _ in
+        if !isShowButtonTapped {
+            let okButton = UIAlertAction(title: "OK", style: .default) { _ in
+                self.dismiss(animated: true)
+            }
+            let cancelButton = UIAlertAction(title: "CANCEL", style: .cancel)
+            showAlertView(title: "Are you sure?", message: "If there are changes, these changes will be removed!", alertActions: [okButton, cancelButton])
+        } else {
             self.dismiss(animated: true)
         }
-        let cancelButton = UIAlertAction(title: "CANCEL", style: .cancel)
-        showAlertView(title: "Are you sure?", message: "If there are changes, these changes will be removed!", alertActions: [okButton, cancelButton])
     }
     
     @IBAction func emojiButtonsAct(_ sender: UIButton) {
@@ -120,54 +145,28 @@ class AddNewViewController: UIViewController, AddNewViewControllerProtocol, Date
         checkSelectedEmotionsIsEmpty()
         checkSelectedActivityIsEmpty()
         
-        if !isEditButtonTapped {
-            if let selectedButton = getSelectedButton(),
-                let emotionText = selectedEmotionsLabel.text,
-                let activityText = selectedActivityLabel.text {
-                
-                DispatchQueue.main.async { [weak self] in
-                    guard let self = self else { return }
-                    self.presenter?.notifySaveButtonTapped(UUID(),
-                                                           self.chosenDate ?? .now,
-                                                           self.addNewTextView.text ?? "",
-                                                           selectedButton,
-                                                           emotionText,
-                                                           activityText)
-                }
-            } else {
-                let okButton = UIAlertAction(title: "OK",
-                                             style: .cancel)
-                showAlertView(title: "Error!",
-                              message: "You should choose one of emojis!",
-                              alertActions: [okButton])
+        if let selectedButton = getSelectedButton(),
+           let emotionText = selectedEmotionsLabel.text,
+           let activityText = selectedActivityLabel.text {
+            
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.presenter?.notifySaveButtonTapped(UUID(),
+                                                       self.chosenDate ?? .now,
+                                                       self.addNewTextView.text ?? "",
+                                                       selectedButton,
+                                                       emotionText,
+                                                       activityText)
             }
         } else {
-            if let selectedButton = getSelectedButton(),
-                let emotionText = selectedEmotionsLabel.text,
-                let activityText = selectedActivityLabel.text,
-                let editId = editionIdAndIndex?.a,
-                let editIndex = editionIdAndIndex?.b{
-                
-                DispatchQueue.main.async { [weak self] in
-                    guard let self = self else { return }
-                    self.presenter?.notifySaveButtonTappedWithEdit(UUID(),
-                                                                   self.chosenDate ?? .now,
-                                                                   self.addNewTextView.text ?? "",
-                                                                   selectedButton,
-                                                                   emotionText,
-                                                                   activityText,
-                                                                   editId,
-                                                                   editIndex)
-                }
-            } else {
-                let okButton = UIAlertAction(title: "OK",
-                                             style: .cancel)
-                showAlertView(title: "Error!",
-                              message: "You should choose one of emojis!",
-                              alertActions: [okButton])
-            }
+            let okButton = UIAlertAction(title: "OK",
+                                         style: .cancel)
+            showAlertView(title: "Error!",
+                          message: "You should choose one of emojis!",
+                          alertActions: [okButton])
         }
     }
+
     
     func checkTextViewIsEmpty() {
         addNewTextView.text.isEmpty || addNewTextView.text == nil ? addNewTextView.text = "- -" : nil

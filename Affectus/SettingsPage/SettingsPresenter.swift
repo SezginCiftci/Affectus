@@ -14,7 +14,8 @@ protocol SettingsPresenterProtocol: AnyObject {
 }
 
 protocol SettingsInteractorOutputProtocol: AnyObject {
-    
+    func deleteOnSuccess()
+    func deleteOnError()
 }
 
 class SettingsPresenter: SettingsPresenterProtocol {
@@ -24,7 +25,7 @@ class SettingsPresenter: SettingsPresenterProtocol {
     var router: SettingsRouterProtocol?
     
     func notifyGiveStarCellTapped() {
-        interactor?.didGiveStar()
+        router?.routeToAppStore()
     }
     
     func notifyGiveFeedbackCellTapped(_ settingsVCSelf: SettingsViewController) {
@@ -38,4 +39,11 @@ class SettingsPresenter: SettingsPresenterProtocol {
 
 extension SettingsPresenter: SettingsInteractorOutputProtocol {
     
+    func deleteOnSuccess() {
+        view?.deletedAllSuccess()
+    }
+    
+    func deleteOnError() {
+        view?.deletedAllError()
+    }
 }
