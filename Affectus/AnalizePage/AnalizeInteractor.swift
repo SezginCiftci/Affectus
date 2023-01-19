@@ -26,7 +26,6 @@ class AnalizeInteractor: AnalizeInteractorProtocol {
             presenter?.didFetchCoreData(listData)
         }
     }
-    
 //    func fetchDataForCalender(_ completion: (_ listData: AddNewEntityList) -> ()) {
 //        CoreDataManager.shared.loadData { addNewEntityList in
 //            self.listData = addNewEntityList

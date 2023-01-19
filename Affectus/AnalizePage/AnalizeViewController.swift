@@ -94,33 +94,9 @@ extension AnalizeViewController: UICollectionViewDataSource, UICollectionViewDel
 
 extension AnalizeViewController: FSCalendarDelegate, FSCalendarDelegateAppearance, FSCalendarDataSource {
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        //print(date)
     }
     
-//    func minimumDate(for calendar: FSCalendar) -> Date {
-//        return Date().addingTimeInterval((24*60*60)*5)
-//    }
-    
-    
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillDefaultColorFor date: Date) -> UIColor? {
-
-//        if isPageFirstTimeShown {
-//            fetchDataForCalender { listData in
-//                self.listData = listData
-//            }
-//
-//            for dater in listData?.moodDateArray ?? [] {
-//                print(dater)
-//                let testDate = dater.dateToString("dd-MM-yyyy")
-//                formatter.dateFormat = "dd-MM-yyyy"
-//
-//                guard let excludedDate = formatter.date(from: testDate) else { return nil}
-//                if date.compare(excludedDate) == .orderedSame {
-//                    return .systemBlue
-//                }
-//            }
-//        }
-        
         fetchDataForCalender { listData in
             self.listData = listData
         }
@@ -134,17 +110,7 @@ extension AnalizeViewController: FSCalendarDelegate, FSCalendarDelegateAppearanc
                 return .systemPurple
             }
         }
-        
-        //let testDate = listData?.moodDateArray[2].dateToString("dd-MM-yyyy") ?? "30-09-2022"
-//        formatter.dateFormat = "dd-MM-yyyy"
-//
-//        guard let excludedDate = formatter.date(from: testDate) else { return nil}
-//        if date.compare(excludedDate) == .orderedSame {
-//            return .systemBlue
-//        }
-        
         isPageFirstTimeShown = false
         return nil
     }
 }
-//formatter.date(from: "30-09-2022")
