@@ -141,7 +141,6 @@ struct CoreDataManager {
 
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "AffectusMood")
 
-        //fetchRequest.predicate = NSPredicate(format: "id = %@", idString)
         fetchRequest.returnsObjectsAsFaults = false
 
         do {

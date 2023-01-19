@@ -13,28 +13,12 @@ class AnalizeChartView: UIView, ChartViewDelegate {
     @IBOutlet weak var lineChartView: LineChartView!
     
     lazy var yValues = [
-        ChartDataEntry(x: 0.0, y: 0.0),
-        ChartDataEntry(x: 1.0, y: 2.0),
-        ChartDataEntry(x: 2.0, y: 3.0),
-        ChartDataEntry(x: 3.0, y: 4.0),
-        ChartDataEntry(x: 4.0, y: 5.0),
-        ChartDataEntry(x: 6.0, y: 8.0)
+        ChartDataEntry(x: 0.0, y: 3.0)
     ]
-    
-    lazy var yValues2 = [
-        ChartDataEntry(x: 0.0, y: 3.0),
-        ChartDataEntry(x: 1.0, y: 3.0),
-        ChartDataEntry(x: 2.0, y: 3.0),
-        ChartDataEntry(x: 3.0, y: 3.0),
-        ChartDataEntry(x: 4.0, y: 3.0),
-        ChartDataEntry(x: 5.0, y: 3.0),
-        ChartDataEntry(x: 6.0, y: 3.0),
-        ChartDataEntry(x: 7.0, y: 3.0)
-    ]
-    
+        
     lazy var xValues = [ChartDataEntry]()
     
-    var myNumber = 0
+    var entryCount = 0
     
     var listData: AddNewEntityList?
     
@@ -84,7 +68,7 @@ class AnalizeChartView: UIView, ChartViewDelegate {
     }
     
     func setDataSet() {
-        let dataSet1 = LineChartDataSet(entries: xValues, label: "Test Entry")
+        let dataSet1 = LineChartDataSet(entries: xValues, label: "Your Mood")
         dataSet1.mode = .cubicBezier
         dataSet1.drawHorizontalHighlightIndicatorEnabled = false
         dataSet1.drawVerticalHighlightIndicatorEnabled = false
@@ -94,8 +78,7 @@ class AnalizeChartView: UIView, ChartViewDelegate {
 //        dataSet1.fillAlpha = 0.5
 //        dataSet1.drawFilledEnabled = true
         dataSet1.setColor(UIColor(named: "cellGradientStartColour")!)
-        
-        let dataSet2 = LineChartDataSet(entries: yValues2, label: "Test Entry")
+        let dataSet2 = LineChartDataSet(entries: yValues, label: "Avarage")
         dataSet2.mode = .cubicBezier
         dataSet2.drawHorizontalHighlightIndicatorEnabled = false
         dataSet2.drawVerticalHighlightIndicatorEnabled = false
@@ -116,8 +99,9 @@ class AnalizeChartView: UIView, ChartViewDelegate {
                 return
             }
             for data in listData.moodEmojiArray {
-                xValues.append(ChartDataEntry(x: Double(myNumber), y: Double(generateChartData(data))))
-                myNumber += 1
+                xValues.append(ChartDataEntry(x: Double(entryCount), y: Double(generateChartData(data))))
+                entryCount += 1
+                yValues.append(ChartDataEntry(x: Double(entryCount), y: 3.0))
             }
         }
     }

@@ -17,9 +17,7 @@ class PickEmotionCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var pickCellButton: UIButton!
     
     weak var pickEmotionCellDelegate: PickEmotionCellDelegate?
-    
-    var selectedButtonsTitle: [String] = []
-    
+        
     var buttonState: Bool = false {
         didSet {
             if buttonState == false {

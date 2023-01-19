@@ -7,6 +7,7 @@
 
 import UIKit
 import MessageUI
+import PassKit
 
 protocol SettingsViewControllerProtocol: AnyObject {
     func deletedAllSuccess()
@@ -121,12 +122,20 @@ extension SettingsViewController: UICollectionViewDataSource, UICollectionViewDe
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        switch indexPath.row {
+//        case 0:
+//            didGiveUsStarCellTapped()
+//        case 1:
+//            didGiveFeedbackCellTapped()
+//        case 2:
+//            didDisableAffectusCellTapped()
+//        default:
+//            break
+//        }
         switch indexPath.row {
         case 0:
-            didGiveUsStarCellTapped()
-        case 1:
             didGiveFeedbackCellTapped()
-        case 2:
+        case 1:
             didDisableAffectusCellTapped()
         default:
             break
@@ -155,4 +164,8 @@ extension SettingsViewController: MFMailComposeViewControllerDelegate {
         }
         controller.dismiss(animated: true)
     }
+}
+
+extension SettingsViewController {
+    
 }

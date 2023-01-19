@@ -33,6 +33,7 @@ class MainViewController: UIViewController, MainViewControllerProtocol, EditOrDe
         presenter?.notifyViewDidLoad()
         configureUI()
         saveUserPassedOnboarding()
+        sendLocalNotification()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(didNewDataFetched(_ :)),
                                                name: .didSavedNewData,
@@ -46,7 +47,7 @@ class MainViewController: UIViewController, MainViewControllerProtocol, EditOrDe
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(didNewDataFetched(_ :)),
                                                name: .didSavedNewData,
-                                               object: nil)        
+                                               object: nil)
     }
     
     func saveUserPassedOnboarding() {
@@ -92,6 +93,30 @@ class MainViewController: UIViewController, MainViewControllerProtocol, EditOrDe
         }
     }
     
+    func sendLocalNotification() {
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.badge, .sound, .alert]) { granted, error in
+            if error == nil {
+                print("User permission is granted : \(granted)")
+            }
+        }
+        
+        let content = UNMutableNotificationContent()
+        content.title = "Affectus"
+        content.body = "It's time to save your mood!"
+        
+        var dateComponenet = DateComponents()
+        dateComponenet.hour = 10
+        dateComponenet.minute = 0
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponenet, repeats: true)
+        let uuid = UUID().uuidString
+        let request = UNNotificationRequest(identifier: uuid, content: content, trigger: trigger)
+        
+        center.add(request) { error in
+            
+        }
+    }
+    
     func showButtonTapped(_ selectedId: UUID) {
         guard let localIndex = localIndex else { return }
         presenter?.notifyShowButtonTapped(selectedId, localIndex)
@@ -131,7 +156,6 @@ class MainViewController: UIViewController, MainViewControllerProtocol, EditOrDe
         mainCollectionView.delegate = self
         mainCollectionView.dataSource = self
     }
-    
     
     @IBAction func infoButtonAct(_ sender: UIButton) {
         let infoVC = InfoViewController(.homeInfo)

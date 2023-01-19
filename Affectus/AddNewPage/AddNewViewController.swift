@@ -15,7 +15,7 @@ protocol AddNewViewControllerProtocol: AnyObject {
 
 class AddNewViewController: UIViewController, AddNewViewControllerProtocol, DatePickViewDelegate {
             
-    @IBOutlet var emojiButtons: [UIButton]!
+    //@IBOutlet var emojiButtons: [UIButton]!
     @IBOutlet weak var addNewTextView: UITextView!
     @IBOutlet weak var dateButton: UIButton!
     @IBOutlet weak var selectedEmotionsLabel: UILabel!
@@ -24,6 +24,8 @@ class AddNewViewController: UIViewController, AddNewViewControllerProtocol, Date
     @IBOutlet weak var addNewActivity: UIButton!
     @IBOutlet weak var addNewDescribe: UIButton!
     @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var moodImageview: UIImageView!
+    @IBOutlet weak var moodSlider: UISlider!
     
     var presenter: AddNewPresenterProtocol?
 
@@ -54,10 +56,7 @@ class AddNewViewController: UIViewController, AddNewViewControllerProtocol, Date
             self.selectedEmotionsLabel.text = moodDescribe
             self.selectedActivityLabel.text = moodActivity
             self.dateButton.setTitle(moodDate.dateToString("d MMM "), for: .normal)
-            self.emojiButtons[moodEmoji].alpha = 0.5
-            for emojiButton in self.emojiButtons {
-                emojiButton.isUserInteractionEnabled = false
-            }
+            self.moodSlider.isUserInteractionEnabled = false
             self.addNewTextView.isUserInteractionEnabled = false
             self.addNewActivity.isUserInteractionEnabled = false
             self.addNewDescribe.isUserInteractionEnabled = false
@@ -78,9 +77,7 @@ class AddNewViewController: UIViewController, AddNewViewControllerProtocol, Date
         dateButton.isUserInteractionEnabled = false
         if !isShowButtonTapped {
             dateButton.setTitle(Date.now.dateToString("d MMM "), for: .normal)
-            for emojiButton in emojiButtons {
-                emojiButton.isUserInteractionEnabled = true
-            }
+            moodSlider.isUserInteractionEnabled = true
             addNewTextView.isUserInteractionEnabled = true
             addNewActivity.isUserInteractionEnabled = true
             addNewDescribe.isUserInteractionEnabled = true
@@ -112,17 +109,34 @@ class AddNewViewController: UIViewController, AddNewViewControllerProtocol, Date
                 self.dismiss(animated: true)
             }
             let cancelButton = UIAlertAction(title: "CANCEL", style: .cancel)
-            showAlertView(title: "Are you sure?", message: "If there are changes, these changes will be removed!", alertActions: [okButton, cancelButton])
+            showAlertView(title: "Are you sure?", message: "If there are any changes, these changes will be removed!", alertActions: [okButton, cancelButton])
         } else {
             self.dismiss(animated: true)
         }
     }
     
-    @IBAction func emojiButtonsAct(_ sender: UIButton) {
-        for i in 0...4 {
-            emojiButtons[i].alpha = 1
+    @IBAction func moodSliderValueDidChange(_ sender: UISlider) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            switch sender.value {
+            case 0..<0.5:
+                self.moodSlider.value = 0
+                self.moodImageview.image = UIImage(named: MoodImageNames.Cry.rawValue)
+            case 0.5..<1.5:
+                self.moodSlider.value = 1
+                self.moodImageview.image = UIImage(named: MoodImageNames.Sad.rawValue)
+            case 1.5..<2.5:
+                self.moodSlider.value = 2
+                self.moodImageview.image = UIImage(named: MoodImageNames.Confusing.rawValue)
+            case 2.5..<3.5:
+                self.moodSlider.value = 3
+                self.moodImageview.image = UIImage(named: MoodImageNames.Happy.rawValue)
+            case 3.5...4:
+                self.moodSlider.value = 4
+                self.moodImageview.image = UIImage(named: MoodImageNames.Smile.rawValue)
+            default:
+                break
+            }
         }
-        emojiButtons[sender.tag].alpha = 0.5
     }
     
     @IBAction func addEmotionButtonAct(_ sender: UIButton) {
@@ -145,8 +159,7 @@ class AddNewViewController: UIViewController, AddNewViewControllerProtocol, Date
         checkSelectedEmotionsIsEmpty()
         checkSelectedActivityIsEmpty()
         
-        if let selectedButton = getSelectedButton(),
-           let emotionText = selectedEmotionsLabel.text,
+        if let emotionText = selectedEmotionsLabel.text,
            let activityText = selectedActivityLabel.text {
             
             DispatchQueue.main.async { [weak self] in
@@ -154,7 +167,7 @@ class AddNewViewController: UIViewController, AddNewViewControllerProtocol, Date
                 self.presenter?.notifySaveButtonTapped(UUID(),
                                                        self.chosenDate ?? .now,
                                                        self.addNewTextView.text ?? "",
-                                                       selectedButton,
+                                                       Int(self.moodSlider.value),
                                                        emotionText,
                                                        activityText)
             }
@@ -191,14 +204,6 @@ class AddNewViewController: UIViewController, AddNewViewControllerProtocol, Date
                       alertActions: [okButton])
     }
     
-    func getSelectedButton() -> Int? {
-        for (index, i) in emojiButtons.enumerated() {
-            if i.alpha == 0.5 {
-                return index
-            }
-        }
-        return nil
-    }
 }
 
 extension AddNewViewController: UITextViewDelegate {
@@ -240,4 +245,12 @@ class DummyTextCheck {
     static let selectedEmotions = "Which emotion describes your state?"
     static let selectedActivities = "What are you going to do today?"
     static let doubleSeperator = "- -"
+}
+
+enum MoodImageNames: String {
+    case Cry = "cry"
+    case Sad = "sad"
+    case Confusing = "confused"
+    case Happy = "happy"
+    case Smile = "smile"
 }

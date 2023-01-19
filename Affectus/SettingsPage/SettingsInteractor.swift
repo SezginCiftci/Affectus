@@ -9,6 +9,7 @@ import Foundation
 
 protocol SettingsInteractorProtocol {
     func didDisableAffectus()
+    func didPaymentTapped()
 }
 
 class SettingsInteractor: SettingsInteractorProtocol {
@@ -36,5 +37,9 @@ class SettingsInteractor: SettingsInteractorProtocol {
             self.presenter?.deleteOnError()
         }
         exit(0)
+    }
+    
+    func didPaymentTapped() {
+        
     }
 }

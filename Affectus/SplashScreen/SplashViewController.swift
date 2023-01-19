@@ -17,9 +17,9 @@ class SplashScreenViewController: UIViewController {
     fileprivate var pageView = UIView()
     
     fileprivate var items = [
-        SplashScreenItem(title: "Travel the World", content: "During the travel, save your stopping places as well as your destinations!", backgroundImage: UIImage(named: "onboarding-1")),
-        SplashScreenItem(title: "Use Map Like Old Travelers", content: "Mapping is a kind of old school saving process, enjoy that!", backgroundImage: UIImage(named: "onboarding-2")),
-        SplashScreenItem(title: "Save Your Comments However You Like", content: "You are able to save your comments as well like travel book!", backgroundImage: UIImage(named: "onboarding-3"))
+        SplashScreenItem(title: "Create a routine", content: "Record your mood and daily activities every day.", backgroundImage: UIImage(named: "onboarding-1")),
+        SplashScreenItem(title: "Enter your daily details", content: "To follow your mode in more detail, it is important that you fill out these details.", backgroundImage: UIImage(named: "onboarding-2")),
+        SplashScreenItem(title: "Share your experience", content: "Your feedback will help us improve this application.", backgroundImage: UIImage(named: "onboarding-3"))
     ]
     
     fileprivate var currentPage: Int = 0
@@ -156,6 +156,7 @@ class SplashScreenViewController: UIViewController {
         titleLabel.contentMode = .scaleToFill
         titleLabel.sizeToFit()
         titleLabel.font = UIFont.systemFont(ofSize: 22, weight: .bold)
+        titleLabel.adjustsFontSizeToFitWidth = true
         titleLabel.backgroundColor = .clear
         titleLabel.textColor = .white
         titleLabel.text = items[index].title

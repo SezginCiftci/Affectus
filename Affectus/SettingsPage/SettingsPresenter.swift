@@ -11,6 +11,7 @@ protocol SettingsPresenterProtocol: AnyObject {
     func notifyGiveStarCellTapped()
     func notifyGiveFeedbackCellTapped(_ settingsVCSelf: SettingsViewController)
     func notifyDisableCellTapped()
+    func notifyPaymentButtonTappe()
 }
 
 protocol SettingsInteractorOutputProtocol: AnyObject {
@@ -34,6 +35,10 @@ class SettingsPresenter: SettingsPresenterProtocol {
     
     func notifyDisableCellTapped() {
         interactor?.didDisableAffectus()
+    }
+    
+    func notifyPaymentButtonTappe() {
+        interactor?.didPaymentTapped()
     }
 }
 

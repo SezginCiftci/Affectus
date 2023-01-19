@@ -50,8 +50,12 @@ class PickEmotionViewController: UIViewController {
     }
     
     @IBAction func saveButtonAct(_ sender: UIButton) {
-        pickEmotionDelegate?.getSelectedItems(selectedEmotions)
-        self.dismiss(animated: true)
+        if selectedEmotions.count > 2 {
+            showAlertView(title: "Error!", message: "You cannot add more than 2 items...", alertActions: [])
+        } else {
+            pickEmotionDelegate?.getSelectedItems(selectedEmotions)
+            self.dismiss(animated: true)
+        }
     }
     
     @IBAction func cancelButtonAct(_ sender: UIButton) {
