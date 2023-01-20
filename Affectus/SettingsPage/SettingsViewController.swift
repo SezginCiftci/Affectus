@@ -85,7 +85,7 @@ class SettingsViewController: UIViewController, SettingsViewControllerProtocol {
             self.showAlertView(title: "Goodbye...", message: "You can come here anytime you like.", alertActions: [okButton])
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-        self.showAlertView(title: "Are You Sure?", message: "All information you gave, will be deleted. We are gonna miss you :(", alertActions: [cancelAction, okAction])
+        self.showAlertView(title: "Are You Sure?", message: "All the information you provided will be deleted. We are going to miss you :(", alertActions: [cancelAction, okAction])
     }
     
     func deletedAllSuccess() {

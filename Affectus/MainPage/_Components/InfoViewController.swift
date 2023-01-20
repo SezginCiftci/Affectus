@@ -94,13 +94,13 @@ class InfoViewController: UIViewController {
     private func getInfoLabelText() -> String {
         switch infoPageType {
         case .homeInfo:
-            return "You can add an daily mood by clicking plus button from the below. While your daily moods are listed on home page, analize page will show further insight as well."
+            return "You can add a daily mood by clicking the plus button from the below. While your daily moods are listed on your home page, your analyze page provides further insight as well."
         case .analizeInfo:
-            return "To see proper analize on this page, you should enter at least two daily mood. By the way purple dates on calender refer to dates you entered mood."
+            return "In order to see proper analysis on this page, please enter at least two daily moods. The purple dates on the calendar refer to the dates you entered a mood."
         case .journalInfo:
-            return "Journal page only includes your notes about daily mood. You can use here as your personal journal."
+            return "Your journal page only includes notes about your mood each day. You can use this page as your personal journal."
         case .settingInfo:
-            return "On this page, you can determine your personal Avatar by clicking image. Moreover, you can give us star, feedback and also you can delete all of your information in Affectus without deleting app."
+            return "On this page, you can determine your personal avatar by clicking the image. Moreover, you can give us star and leave us feedback and you can delete all of your information in Affectus without deleting the app."
         }
         
     }

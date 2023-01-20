@@ -96,7 +96,7 @@ class MainTabbarViewController: UITabBarController {
     
     @objc private func handlePlusButton() {
         if isTodayDateGiven() {
-            showAlertView(title: "Error!", message: "You have already given your mood", alertActions: [])
+            showAlertView(title: "Ooops!", message: "You have already given your mood", alertActions: [])
         } else {
             let addVC = AddNewRouter.createModule()
             addVC.modalPresentationStyle = .fullScreen
