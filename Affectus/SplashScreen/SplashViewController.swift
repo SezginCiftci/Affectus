@@ -91,7 +91,9 @@ class SplashScreenViewController: UIViewController {
                 if self.isIndexDone {
                     self.goMainVC()
                 } else {
-                    self.setUI(self.currentPage)
+                    if self.currentPage < 3 {
+                        self.setUI(self.currentPage)
+                    }
                 }
             }
         }

@@ -85,7 +85,7 @@ class MainTabbarViewController: UITabBarController {
     }
     
     public func initPulseAnimation() {
-        pulse = PulseAnimation(numberOfPulses: Float.infinity, radius: 100, position: plusButton.center)
+        pulse = PulseAnimation(numberOfPulses: 5, radius: 100, position: plusButton.center)
         pulse?.animationDuration = 1.0
         pulse?.backgroundColor = UIColor.systemPurple.cgColor
         tabBar.layer.insertSublayer(pulse!, below: view.layer)

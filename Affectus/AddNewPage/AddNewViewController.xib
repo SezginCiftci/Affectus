@@ -106,7 +106,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
-                                    <color key="backgroundColor" systemColor="separatorColor"/>
+                                    <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="80" id="4IM-3L-Q7Q"/>
                                         <constraint firstAttribute="bottom" secondItem="S3U-sx-qmB" secondAttribute="bottom" constant="8" id="Bye-Si-22H"/>
@@ -144,7 +144,7 @@
                                             </connections>
                                         </button>
                                     </subviews>
-                                    <color key="backgroundColor" systemColor="separatorColor"/>
+                                    <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                                     <constraints>
                                         <constraint firstItem="F9b-Ge-hf1" firstAttribute="top" secondItem="SIt-xF-Xba" secondAttribute="top" constant="20" id="ECn-OV-HAS"/>
                                         <constraint firstAttribute="bottom" secondItem="uf5-M8-DrI" secondAttribute="bottom" constant="8" id="Gi8-1a-dcU"/>
@@ -172,7 +172,7 @@
                                 </label>
                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="krp-7t-wFW">
                                     <rect key="frame" x="20" y="160.5" width="374" height="80"/>
-                                    <color key="backgroundColor" systemColor="separatorColor"/>
+                                    <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="80" id="Dkd-lt-Ti9"/>
                                     </constraints>
@@ -306,7 +306,7 @@
                                             </constraints>
                                         </imageView>
                                     </subviews>
-                                    <color key="backgroundColor" systemColor="separatorColor"/>
+                                    <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="x13-Dv-Daa" secondAttribute="bottom" constant="5" id="2Pc-Ut-VDL"/>
                                         <constraint firstAttribute="bottom" secondItem="k9v-FO-ld7" secondAttribute="bottom" constant="14" id="7XS-kJ-2ne"/>
@@ -403,8 +403,8 @@
         <namedColor name="customButtonColor">
             <color red="0.49399998784065247" green="0.57599997520446777" blue="0.98000001907348633" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="separatorColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="secondarySystemGroupedBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemIndigoColor">
             <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
