@@ -11,7 +11,6 @@ class MainTabbarViewController: UITabBarController {
     
     var plusButton = UIButton()
     var pulse: PulseAnimation?
-    private var addNewEntityList: AddNewEntityList?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +20,6 @@ class MainTabbarViewController: UITabBarController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupPlusButton()
-        fetchCoreDatas()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -29,23 +27,23 @@ class MainTabbarViewController: UITabBarController {
         configureTabbar()
     }
     
-    private func fetchCoreDatas() {
-        CoreDataManager.shared.loadData { [weak self] addNewEntityList in
-            guard let self = self else { return }
-            self.addNewEntityList = addNewEntityList
+    private func fetchCoreDatas(completion: (_ addNewEntityList: AddNewEntityList) -> ()) {
+        CoreDataManager.shared.loadData { addNewEntityList in
+            completion(addNewEntityList)
         }
     }
     
     private func isTodayDateGiven() -> Bool {
+        var returnValue: Bool?
         var newDateStrArr = [String]()
         let today = Date()
-        if let dateArr = addNewEntityList?.moodDateArray {
-            for date in dateArr {
+        fetchCoreDatas { addNewEntityList in
+            for date in addNewEntityList.moodDateArray {
                 newDateStrArr.append(date.dateToString("yyyy-MM-dd"))
             }
-            return newDateStrArr.contains(today.dateToString("yyyy-MM-dd"))
+            returnValue = newDateStrArr.contains(today.dateToString("yyyy-MM-dd"))
         }
-        return false
+        return returnValue ?? false
     }
     
     private func configureTabbar() {
