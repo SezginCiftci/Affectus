@@ -32,7 +32,6 @@ class MainViewController: UIViewController, MainViewControllerProtocol, EditOrDe
         super.viewDidLoad()
         presenter?.notifyViewDidLoad()
         configureUI()
-        saveUserPassedOnboarding()
         sendLocalNotification()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(didNewDataFetched(_ :)),
@@ -94,26 +93,30 @@ class MainViewController: UIViewController, MainViewControllerProtocol, EditOrDe
     }
     
     func sendLocalNotification() {
-        let center = UNUserNotificationCenter.current()
-        center.requestAuthorization(options: [.badge, .sound, .alert]) { granted, error in
-            if error == nil {
-                print("User permission is granted : \(granted)")
+        if !UserDefaults.standard.bool(forKey: "UserPassedOnboarding") {
+            let center = UNUserNotificationCenter.current()
+            center.requestAuthorization(options: [.badge, .sound, .alert]) { granted, error in
+                if error == nil {
+                    print("User permission is granted : \(granted)")
+                }
             }
-        }
-        
-        let content = UNMutableNotificationContent()
-        content.title = "Affectus"
-        content.body = "It's time to save your mood!"
-        
-        var dateComponenet = DateComponents()
-        dateComponenet.hour = 10
-        dateComponenet.minute = 0
-        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponenet, repeats: true)
-        let uuid = UUID().uuidString
-        let request = UNNotificationRequest(identifier: uuid, content: content, trigger: trigger)
-        
-        center.add(request) { error in
             
+            let content = UNMutableNotificationContent()
+            content.title = "Affectus"
+            content.body = "It's time to save your mood!"
+            
+            var dateComponenet = DateComponents()
+            dateComponenet.hour = 10
+            dateComponenet.minute = 0
+            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponenet, repeats: true)
+            let uuid = UUID().uuidString
+            let request = UNNotificationRequest(identifier: uuid, content: content, trigger: trigger)
+            
+            center.add(request) { error in
+                
+            }
+            
+            saveUserPassedOnboarding()
         }
     }
     
