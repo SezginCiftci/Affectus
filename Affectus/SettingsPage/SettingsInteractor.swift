@@ -5,7 +5,7 @@
 //  Created by Sezgin Çiftci on 27.07.2022.
 //
 
-import Foundation
+import UIKit
 
 protocol SettingsInteractorProtocol {
     func didDisableAffectus()
@@ -19,6 +19,7 @@ class SettingsInteractor: SettingsInteractorProtocol {
     func didDisableAffectus() {
         UserDefaults.standard.set(nil, forKey: "Avatar")
         UserDefaults.standard.set(false, forKey: "UserPassedOnboarding")
+        removeAllLocaleNotifications()
         didDeleteItem(UUID())
     }
     
@@ -37,6 +38,10 @@ class SettingsInteractor: SettingsInteractorProtocol {
             self.presenter?.deleteOnError()
         }
         exit(0)
+    }
+    
+    func removeAllLocaleNotifications() {
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
     
     func didPaymentTapped() {
