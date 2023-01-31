@@ -23,6 +23,24 @@ class JournalPageViewController: UIViewController, JournalPageViewControllerProt
         presenter?.notifyViewDidLoad()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didNewDataFetched(_ :)),
+                                               name: .didSavedNewData,
+                                               object: nil)
+    }
+    
+    @objc func didNewDataFetched(_ notification: Notification) {
+        CoreDataManager.shared.loadData {  addNewEntityList in
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.listData = addNewEntityList
+                self.journalCollectionView.reloadData()
+            }
+        }
+    }
+    
     func loadCoreData(_ listData: AddNewEntityList) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
