@@ -134,8 +134,10 @@ extension SettingsViewController: UICollectionViewDataSource, UICollectionViewDe
 //        }
         switch indexPath.row {
         case 0:
-            didGiveFeedbackCellTapped()
+            didGiveUsStarCellTapped()
         case 1:
+            didGiveFeedbackCellTapped()
+        case 2:
             didDisableAffectusCellTapped()
         default:
             break

@@ -47,6 +47,8 @@ class SettingsRouter: SettingsRouterProtocol {
     }
     
     func routeToAppStore() {
-        //TODO: - Routing AppStore
+        if let appStoreUrl = URL(string: "https://apps.apple.com/us/app/affectus/id1666661329") {
+            UIApplication.shared.open(appStoreUrl)
+        }
     }
 }
