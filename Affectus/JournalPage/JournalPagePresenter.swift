@@ -12,7 +12,7 @@ protocol JournalPagePresenterProtocol: AnyObject {
 }
 
 protocol JournalPageInteractorOutputProtocol: AnyObject  {
-    func notifyDidFetchCoreData(_ listData: AddNewEntityList)
+    func notifyDidFetchCoreData(_ listData: AddNewEntityListSample)
 }
 
 class JournalPagePresenter: JournalPagePresenterProtocol {
@@ -28,7 +28,7 @@ class JournalPagePresenter: JournalPagePresenterProtocol {
 }
 
 extension JournalPagePresenter: JournalPageInteractorOutputProtocol {
-    func notifyDidFetchCoreData(_ listData: AddNewEntityList) {
+    func notifyDidFetchCoreData(_ listData: AddNewEntityListSample) {
         view?.loadCoreData(listData)
     }
 }

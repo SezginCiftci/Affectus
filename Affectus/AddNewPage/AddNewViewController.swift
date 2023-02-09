@@ -15,7 +15,6 @@ protocol AddNewViewControllerProtocol: AnyObject {
 
 class AddNewViewController: UIViewController, AddNewViewControllerProtocol, DatePickViewDelegate {
             
-    //@IBOutlet var emojiButtons: [UIButton]!
     @IBOutlet weak var addNewTextView: UITextView!
     @IBOutlet weak var dateButton: UIButton!
     @IBOutlet weak var selectedEmotionsLabel: UILabel!
@@ -32,7 +31,7 @@ class AddNewViewController: UIViewController, AddNewViewControllerProtocol, Date
     var didPickEmotionButtonTapped: Bool = false
     var isShowButtonTapped: Bool = false
     var chosenDate: Date?
-    var showIndexes : (Int, UUID)?
+    var showUUID: UUID?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,14 +59,15 @@ class AddNewViewController: UIViewController, AddNewViewControllerProtocol, Date
             self.addNewTextView.isUserInteractionEnabled = false
             self.addNewActivity.isUserInteractionEnabled = false
             self.addNewDescribe.isUserInteractionEnabled = false
-            self.saveButton.isHidden = true
+            self.saveButton.isEnabled = false
+            self.saveButton.alpha = 0.5
         }
     }
     
     func checkShowButtonTapped() {
         if isShowButtonTapped {
-            if let showIndexes = showIndexes {
-                presenter?.notifyShowButtonTapped(showIndexes.0, showIndexes.1)
+            if let showUUID = showUUID {
+                presenter?.notifyShowButtonTapped(showUUID)
             }
         }
     }
@@ -81,7 +81,8 @@ class AddNewViewController: UIViewController, AddNewViewControllerProtocol, Date
             addNewTextView.isUserInteractionEnabled = true
             addNewActivity.isUserInteractionEnabled = true
             addNewDescribe.isUserInteractionEnabled = true
-            saveButton.isHidden = false
+            saveButton.isEnabled = true
+            saveButton.alpha = 1
         }
     }
     

@@ -9,7 +9,7 @@ import Foundation
 
 protocol AddNewInteractorProtocol {
     func saveToCoreData(_ id: UUID, _ selectedDate: Date, _ givenText: String, _ selectedEmoji: Int, _ selectedEmotions: String, _ selectedActivies: String)
-    func fetchCoreData(_ localIndex: Int, _ selectedId: UUID)
+    func fetchCoreData(completion: (_ listData: [AddNewEntity]) -> Void)
 }
 
 class AddNewInteractor: AddNewInteractorProtocol {
@@ -17,13 +17,14 @@ class AddNewInteractor: AddNewInteractorProtocol {
     weak var presenter: AddNewInteractorOutputProtocol?
     var addNewEntityList: AddNewEntityList?
     var addNewEntity: AddNewEntity?
+    var sampleEntityList: AddNewEntityListSample?
     
     func addNewDataObserver() {
         NotificationCenter.default.post(name: .didSavedNewData, object: nil)
     }
     
     func saveToCoreData(_ id: UUID, _ selectedDate: Date, _ givenText: String, _ selectedEmoji: Int, _ selectedEmotions: String, _ selectedActivies: String) {
-        CoreDataManager.shared.saveData(id: id, moodDate: selectedDate, notesText: givenText, moodEmoji: selectedEmoji, moodDescribe: selectedEmotions, activitySelection: selectedActivies) {
+        CoreDataManager.shared.saveData(newEntitySample: AddNewEntity(id: id, moodDate: selectedDate, notesText: givenText, moodEmoji: selectedEmoji, moodDescribe: selectedEmotions, activitySelection: selectedActivies)) {
             self.presenter?.didSaveDataWithSuccess()
             self.addNewDataObserver()
         } onError: {
@@ -31,14 +32,18 @@ class AddNewInteractor: AddNewInteractorProtocol {
         }
     }
     
-    func fetchCoreData(_ localIndex: Int, _ selectedId: UUID) {
-        CoreDataManager.shared.loadData { [weak self] addNewEntityList in
-            guard let self = self else { return }
-            self.addNewEntityList = addNewEntityList
-            DispatchQueue.global().async { [weak self] in
-                guard let self = self else { return }
-                self.presenter?.notifyDidFetchData(addNewEntityList, localIndex, selectedId)
-            }
+    func saveToCoreDataSample(_ id: UUID, _ selectedDate: Date, _ givenText: String, _ selectedEmoji: Int, _ selectedEmotions: String, _ selectedActivies: String) {
+        CoreDataManager.shared.saveData(newEntitySample: AddNewEntity(id: id, moodDate: selectedDate, notesText: givenText, moodEmoji: selectedEmoji, moodDescribe: selectedEmotions, activitySelection: selectedActivies)) {
+            self.presenter?.didSaveDataWithSuccess()
+            self.addNewDataObserver()
+        } onError: {
+            self.presenter?.didSaveDataWithError()
+        }
+    }
+    
+    func fetchCoreData(completion: (_ listData: [AddNewEntity]) -> Void) {
+        CoreDataManager.shared.loadData { addNewEntityListSample in
+            completion(addNewEntityListSample.sampleEntity)
         }
     }
 }

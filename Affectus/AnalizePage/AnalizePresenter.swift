@@ -12,7 +12,7 @@ protocol AnalizePresenterProtocol: AnyObject {
 }
 
 protocol AnalizeInteractorOutputProtocol: AnyObject {
-    func didFetchCoreData(_ listData: AddNewEntityList)
+    func didFetchCoreData(_ listData: AddNewEntityListSample)
 }
 
 class AnalizePresenter: AnalizePresenterProtocol {
@@ -27,7 +27,7 @@ class AnalizePresenter: AnalizePresenterProtocol {
 }
 
 extension AnalizePresenter: AnalizeInteractorOutputProtocol {
-    func didFetchCoreData(_ listData: AddNewEntityList) {
+    func didFetchCoreData(_ listData: AddNewEntityListSample) {
         view?.loadCoreData(listData)
     }
 }

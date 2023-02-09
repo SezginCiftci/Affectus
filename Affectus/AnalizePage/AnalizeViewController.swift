@@ -9,7 +9,7 @@ import UIKit
 import FSCalendar
 
 protocol AnalizeViewControllerProtocol: AnyObject {
-    func loadCoreData(_ listData: AddNewEntityList)
+    func loadCoreData(_ listData: AddNewEntityListSample)
 }
 
 class AnalizeViewController: UIViewController, AnalizeViewControllerProtocol {
@@ -20,6 +20,7 @@ class AnalizeViewController: UIViewController, AnalizeViewControllerProtocol {
     
     var presenter: AnalizePresenterProtocol?
     var listData: AddNewEntityList?
+    var sampleList: AddNewEntityListSample?
     
     let formatter = DateFormatter()
     private var isPageFirstTimeShown = true
@@ -38,10 +39,10 @@ class AnalizeViewController: UIViewController, AnalizeViewControllerProtocol {
         analizeCollectionView.dataSource = self
     }
     
-    func loadCoreData(_ listData: AddNewEntityList) {
+    func loadCoreData(_ listData: AddNewEntityListSample) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
-            self.listData = listData
+            self.sampleList = listData
             self.analizeCollectionView.reloadData()
         }
     }
@@ -66,28 +67,26 @@ extension AnalizeViewController: UICollectionViewDataSource, UICollectionViewDel
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return listData?.idArray.count ?? 0
+        return sampleList?.sampleEntity.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AnalizeCell", for: indexPath) as! AnalizeCell
         
-        cell.emotionLabel.text = listData?.moodDescribeArray[indexPath.row]
-        cell.activityLabel.text = listData?.activitySelectionArray[indexPath.row]
-        cell.timeLabel.text = listData?.moodDateArray[indexPath.row].dateToString("d MMM, HH:mm")
-        cell.cellEmojiImageView.image = cell.generateCellImage(listData?.moodEmojiArray [indexPath.row] ?? 0)
+        cell.emotionLabel.text = sampleList?.sampleEntity[indexPath.row].moodDescribe
+        cell.activityLabel.text = sampleList?.sampleEntity[indexPath.row].activitySelection
+        cell.timeLabel.text = sampleList?.sampleEntity[indexPath.row].moodDate?.dateToString("d MMM, HH:mm")
+        cell.cellEmojiImageView.image = cell.generateCellImage(sampleList?.sampleEntity[indexPath.row].moodEmoji ?? 0)
         cell.layer.cornerRadius = 20
         
         return cell
     }
     
-    func fetchDataForCalender(_ completion: (_ listData: AddNewEntityList) -> ()) {
-        CoreDataManager.shared.loadData { addNewEntityList in
-            self.listData = addNewEntityList
-            guard let listData = listData else {
-                return
-            }
-            completion(listData)
+    func fetchDataForCalender(_ completion: (_ listData: AddNewEntityListSample) -> ()) {
+        CoreDataManager.shared.loadData { addNewEntityListSample in
+            self.sampleList = addNewEntityListSample
+            guard let sampleList = sampleList else { return }
+            completion(sampleList)
         }
     }
 }
@@ -98,11 +97,11 @@ extension AnalizeViewController: FSCalendarDelegate, FSCalendarDelegateAppearanc
     
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillDefaultColorFor date: Date) -> UIColor? {
         fetchDataForCalender { listData in
-            self.listData = listData
+            self.sampleList = listData
         }
-        guard let list = listData?.moodDateArray else { return UIColor() }
+        guard let list = sampleList?.sampleEntity else { return UIColor() }
         for (index, _) in list.enumerated() {
-            let testDate = list[index].dateToString("dd-MM-yyyy") 
+            let testDate = list[index].moodDate?.dateToString("dd-MM-yyyy") ?? ""
             formatter.dateFormat = "dd-MM-yyyy"
             
             guard let excludedDate = formatter.date(from: testDate) else { return nil}

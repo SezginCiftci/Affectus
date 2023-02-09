@@ -13,13 +13,14 @@ protocol MainPresenterProtocol: AnyObject {
     func notifyViewWillDisappear()
     
     func notifyAnalizeTapped()
-    func notifyShowButtonTapped(_ selectedId: UUID, _ localIndex: Int)
-    func notifyDeleteButtonTapped(_ selectedId: UUID, _ itemIndex: Int)
+    func notifyShowButtonTapped(_ selectedId: UUID)
+    func notifyDeleteButtonTapped(_ selectedId: UUID)
 }
 
 protocol MainInteractorOutputProtocol: AnyObject {
-    func didFetchCoreData(_ listData: AddNewEntityList)
-    func notifyDidFetchData(_ listData: AddNewEntityList)
+    func didFetchCoreData(_ listData: AddNewEntityListSample)
+    func notifyDidFetchData(_ slistData: AddNewEntityListSample)
+
     func deleteOnSuccess()
     func deleteOnError()
 }
@@ -30,7 +31,7 @@ class MainPresenter: MainPresenterProtocol {
     var interactor: MainInteractorProtocol?
     var router: MainRouterProtocol?
     
-//    var listData: AddNewEntityList?
+    var unsortedListData = [AddNewEntity]()
     
     func notifyViewDidLoad() {
         interactor?.fetchCoreDatas()
@@ -49,27 +50,29 @@ class MainPresenter: MainPresenterProtocol {
         router?.routeToAnalizeVC()
     }
     
-    func notifyShowButtonTapped(_ selectedId: UUID, _ localIndex: Int) {
-        router?.routeToAddNewVC(selectedId, localIndex)
+    func notifyShowButtonTapped(_ selectedId: UUID) {
+        router?.routeToAddNewVC(selectedId)
     }
     
-    func notifyDeleteButtonTapped(_ selectedId: UUID, _ itemIndex: Int) {
-        interactor?.didDeleteItem(selectedId, itemIndex)
+    func notifyDeleteButtonTapped(_ selectedId: UUID) {
+        for (index, listItem) in unsortedListData.enumerated() where selectedId == listItem.id {
+            interactor?.didDeleteItem(selectedId, index)
+        }
     }
     
     
 }
 
 extension MainPresenter: MainInteractorOutputProtocol {
-    
-    func didFetchCoreData(_ listData: AddNewEntityList) {
-        view?.loadCoreData(listData)
+    func notifyDidFetchData(_ slistData: AddNewEntityListSample) {
+        unsortedListData = slistData.sampleEntity
+        view?.loadCoreData(slistData)
     }
     
-    func notifyDidFetchData(_ listData: AddNewEntityList) {
-        view?.loadCoreData(listData)
+    func didFetchCoreData(_ listData: AddNewEntityListSample) {
+        view?.loadCoreData(listData) //
     }
-    
+   
     func deleteOnSuccess() {
         view?.deleteItemWithSuccess()
     }

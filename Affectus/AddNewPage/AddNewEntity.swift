@@ -25,3 +25,6 @@ struct AddNewEntityList {
     var activitySelectionArray = [String]()
 }
 
+struct AddNewEntityListSample {
+    var sampleEntity = [AddNewEntity]()
+}

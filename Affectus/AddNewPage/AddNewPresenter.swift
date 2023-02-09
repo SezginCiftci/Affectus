@@ -12,13 +12,12 @@ protocol AddNewPresenterProtocol: AnyObject {
     func notifySaveButtonTapped(_ id: UUID, _ selectedDate: Date, _ givenText: String, _ selectedEmoji: Int, _ selectedEmotions: String, _ selectedActivies: String)
     func notifyPickEmotionAndActivityButtonTapped(_ selectedEntity: [String], _ self: AddNewViewController)
     func notifyDateButtonTapped(_ self: AddNewViewController)
-    func notifyShowButtonTapped(_ localIndex: Int, _ selectedId: UUID)
+    func notifyShowButtonTapped(_ showUUID: UUID)
 }
 
 protocol AddNewInteractorOutputProtocol: AnyObject {
     func didSaveDataWithSuccess()
     func didSaveDataWithError()
-    func notifyDidFetchData(_ entity: AddNewEntityList, _ localIndex: Int, _ selectedId: UUID)
 }
 
 class AddNewPresenter: AddNewPresenterProtocol {
@@ -30,8 +29,12 @@ class AddNewPresenter: AddNewPresenterProtocol {
         interactor?.saveToCoreData(id, selectedDate, givenText, selectedEmoji, selectedEmotions, selectedActivies)
     }
     
-    func notifyShowButtonTapped(_ localIndex: Int, _ selectedId: UUID) {
-        interactor?.fetchCoreData(localIndex, selectedId)
+    func notifyShowButtonTapped(_ showUUID: UUID) {
+        interactor?.fetchCoreData(completion: { listData in
+            for listItem in listData where showUUID == listItem.id {
+                setAddNewPageData(listItem)
+            }
+        })
     }
     
     func notifyDateButtonTapped(_ self: AddNewViewController) {
@@ -58,17 +61,8 @@ extension AddNewPresenter: AddNewInteractorOutputProtocol {
         view?.saveDataFailed()
     }
     
-    func notifyDidFetchData(_ entity: AddNewEntityList, _ localIndex: Int, _ selectedId: UUID) {
-        setAddNewPageData(entity, localIndex)
-    }
-    
-    func setAddNewPageData(_ entities: AddNewEntityList, _ localIndex: Int) {
-        view?.loadCoreData(noteText: entities.notesTextArray[localIndex],
-                           moodEmoji: entities.moodEmojiArray[localIndex],
-                           moodDescribe: entities.moodDescribeArray[localIndex],
-                           moodActivity: entities.activitySelectionArray[localIndex],
-                           moodDate: entities.moodDateArray[localIndex],
-                           id: entities.idArray[localIndex])
+    func setAddNewPageData(_ entities: AddNewEntity) {
+        view?.loadCoreData(noteText: entities.notesText ?? "", moodEmoji: entities.moodEmoji ?? 0, moodDescribe: entities.moodDescribe ?? "", moodActivity: entities.activitySelection ?? "", moodDate: entities.moodDate ?? .now, id: entities.id ?? UUID())
     }
     
 }

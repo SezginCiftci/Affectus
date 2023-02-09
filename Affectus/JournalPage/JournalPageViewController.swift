@@ -8,7 +8,7 @@
 import UIKit
 
 protocol JournalPageViewControllerProtocol: AnyObject {
-    func loadCoreData(_ listData: AddNewEntityList)
+    func loadCoreData(_ listData: AddNewEntityListSample)
 }
 
 class JournalPageViewController: UIViewController, JournalPageViewControllerProtocol {
@@ -16,6 +16,7 @@ class JournalPageViewController: UIViewController, JournalPageViewControllerProt
     @IBOutlet weak var journalCollectionView: UICollectionView!
     var presenter: JournalPagePresenterProtocol?
     var listData: AddNewEntityList?
+    var sampleList: AddNewEntityListSample?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,19 +33,19 @@ class JournalPageViewController: UIViewController, JournalPageViewControllerProt
     }
     
     @objc func didNewDataFetched(_ notification: Notification) {
-        CoreDataManager.shared.loadData {  addNewEntityList in
+        CoreDataManager.shared.loadData { addNewEntityListSample in
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
-                self.listData = addNewEntityList
+                self.sampleList = addNewEntityListSample
                 self.journalCollectionView.reloadData()
             }
         }
     }
     
-    func loadCoreData(_ listData: AddNewEntityList) {
+    func loadCoreData(_ listData: AddNewEntityListSample) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
-            self.listData = listData
+            self.sampleList = listData
             self.journalCollectionView.reloadData()
         }
     }
@@ -57,7 +58,7 @@ class JournalPageViewController: UIViewController, JournalPageViewControllerProt
     }
     
     func getCollectionViewCellSize(_ collectionView: UICollectionView, _ indexPathRow: Int) -> CGSize {
-        if let textCount = listData?.notesTextArray[indexPathRow].count {
+        if let textCount = sampleList?.sampleEntity[indexPathRow].notesText?.count {
             switch textCount {
             case 0...50:
                 return CGSize(width: collectionView.frame.width - 50, height: 100)
@@ -91,14 +92,14 @@ extension JournalPageViewController: UICollectionViewDataSource, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return listData?.idArray.count ?? 0
+        return sampleList?.sampleEntity.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "JournalPageCollectionCell", for: indexPath) as! JournalPageCollectionCell
         
-        cell.journalCellTextView.text = listData?.notesTextArray[indexPath.row]
-        cell.journalCellDateLabel.text = listData?.moodDateArray[indexPath.row].dateToString("d MMM yyyy HH:mm")
+        cell.journalCellTextView.text = sampleList?.sampleEntity[indexPath.row].notesText
+        cell.journalCellDateLabel.text = sampleList?.sampleEntity[indexPath.row].moodDate?.dateToString("d MMM yyyy HH:mm")
         
         return cell
     }

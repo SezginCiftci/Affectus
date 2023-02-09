@@ -16,23 +16,16 @@ class AnalizeInteractor: AnalizeInteractorProtocol {
     
     weak var presenter: AnalizeInteractorOutputProtocol?
     var listData: AddNewEntityList?
+    var sampleList: AddNewEntityListSample?
     
     func fetchCoreData() {
-        CoreDataManager.shared.loadData { addNewEntityList in
-            self.listData = addNewEntityList
-            guard let listData = listData else {
+        CoreDataManager.shared.loadData { addNewEntityListSample in
+            self.sampleList = addNewEntityListSample
+            guard let sampleList = sampleList else {
                 return
             }
-            presenter?.didFetchCoreData(listData)
+            presenter?.didFetchCoreData(sampleList)
         }
     }
-//    func fetchDataForCalender(_ completion: (_ listData: AddNewEntityList) -> ()) {
-//        CoreDataManager.shared.loadData { addNewEntityList in
-//            self.listData = addNewEntityList
-//            guard let listData = listData else {
-//                return
-//            }
-//            completion(listData)
-//        }
-//    }
+    
 }

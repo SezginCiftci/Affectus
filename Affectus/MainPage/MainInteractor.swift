@@ -19,6 +19,7 @@ class MainInteractor: MainInteractorProtocol {
     weak var presenter: MainInteractorOutputProtocol?
     
     var addNewEntityList: AddNewEntityList?
+    var sampleEntityList: AddNewEntityListSample?
     var addNewEntity: AddNewEntity?
     
     func addObservers() {
@@ -35,23 +36,21 @@ class MainInteractor: MainInteractorProtocol {
     }
     
     @objc func didNewDataFetched() {
-        CoreDataManager.shared.loadData { [weak self] addNewEntityList in
+        CoreDataManager.shared.loadData { [weak self] addNewEntityListSample in
             guard let self = self else { return }
-            guard let addNewEntity = self.addNewEntityList else { return }
-            DispatchQueue.global(qos: .default).async { [weak self] in
-                guard let self = self else { return }
-                self.presenter?.didFetchCoreData(addNewEntity)
+            self.sampleEntityList = addNewEntityListSample
+            DispatchQueue.global().async {
+                self.presenter?.notifyDidFetchData(addNewEntityListSample)
             }
         }
     }
     
     func fetchCoreDatas() {
-        CoreDataManager.shared.loadData { [weak self] addNewEntityList in
+        CoreDataManager.shared.loadData { [weak self] addNewEntityListSample in
             guard let self = self else { return }
-            self.addNewEntityList = addNewEntityList
-            DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-                guard let self = self else { return }
-                self.presenter?.notifyDidFetchData(addNewEntityList)
+            self.sampleEntityList = addNewEntityListSample
+            DispatchQueue.global().async {
+                self.presenter?.notifyDidFetchData(addNewEntityListSample)
             }
         }
     }
@@ -59,13 +58,7 @@ class MainInteractor: MainInteractorProtocol {
     func didDeleteItem(_ selectedId: UUID, _ itemIndex: Int) {
         fetchCoreDatas()
         CoreDataManager.shared.deleteItem(chosenId: selectedId) { addNewEntity in
-            self.addNewEntity = addNewEntity
-            addNewEntityList?.moodDescribeArray.remove(at: itemIndex)
-            addNewEntityList?.activitySelectionArray.remove(at: itemIndex)
-            addNewEntityList?.moodDateArray.remove(at: itemIndex)
-            addNewEntityList?.moodEmojiArray.remove(at: itemIndex)
-            addNewEntityList?.notesTextArray.remove(at: itemIndex)
-            addNewEntityList?.idArray.remove(at: itemIndex)
+            sampleEntityList?.sampleEntity.remove(at: itemIndex)
         } onSuccess: {
             self.presenter?.deleteOnSuccess()
         } onError: {

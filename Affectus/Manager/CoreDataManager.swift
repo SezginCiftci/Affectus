@@ -11,19 +11,19 @@ import CoreData
 struct CoreDataManager {
     static var shared = CoreDataManager()
 
-    func saveData(id: UUID, moodDate: Date, notesText: String, moodEmoji: Int, moodDescribe: String, activitySelection: String, onSuccess: () -> (), onError: () -> ()) {
+    func saveData(newEntitySample: AddNewEntity, onSuccess: () -> (), onError: () -> ()) {
 
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
 
         let addNewMood = NSEntityDescription.insertNewObject(forEntityName: "AffectusMood", into: context)
-
-        addNewMood.setValue(id, forKey: "id")
-        addNewMood.setValue(moodDate, forKey: "moodDate")
-        addNewMood.setValue(notesText, forKey: "notesText")
-        addNewMood.setValue(moodEmoji, forKey: "moodEmoji")
-        addNewMood.setValue(moodDescribe, forKey: "moodDescribe")
-        addNewMood.setValue(activitySelection, forKey: "activitySelection")
+        
+        addNewMood.setValue(newEntitySample.id, forKey: "id")
+        addNewMood.setValue(newEntitySample.moodDate, forKey: "moodDate")
+        addNewMood.setValue(newEntitySample.notesText, forKey: "notesText")
+        addNewMood.setValue(newEntitySample.moodEmoji, forKey: "moodEmoji")
+        addNewMood.setValue(newEntitySample.moodDescribe, forKey: "moodDescribe")
+        addNewMood.setValue(newEntitySample.activitySelection, forKey: "activitySelection")
         
         do {
             try context.save()
@@ -33,10 +33,9 @@ struct CoreDataManager {
         }
     }
 
+    func loadData(completion: ((_ addNewEntityListSample: AddNewEntityListSample) -> ())) {
 
-    func loadData(completion: ((_ addNewEntityList: AddNewEntityList) -> ())) {
-
-        var addNewEntityList = AddNewEntityList()
+        var addNewEntityList = AddNewEntityListSample()
 
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
@@ -48,40 +47,18 @@ struct CoreDataManager {
             let results = try context.fetch(fetchRequest)
             if results.count > 0 {
                 
-                addNewEntityList.idArray.removeAll(keepingCapacity: false)
-                addNewEntityList.moodDateArray.removeAll(keepingCapacity: false)
-                addNewEntityList.notesTextArray.removeAll(keepingCapacity: false)
-                addNewEntityList.moodEmojiArray.removeAll(keepingCapacity: false)
-                addNewEntityList.moodDescribeArray.removeAll(keepingCapacity: false)
-                addNewEntityList.activitySelectionArray.removeAll(keepingCapacity: false)
-
+                addNewEntityList.sampleEntity.removeAll()
 
                 for result in results as! [NSManagedObject] {
                     
-                    if let id = result.value(forKey: "id") as? UUID {
-                        addNewEntityList.idArray.append(id)
+                    if let id = result.value(forKey: "id") as? UUID,
+                       let moodDate = result.value(forKey: "moodDate") as? Date,
+                       let notesText = result.value(forKey: "notesText") as? String,
+                       let moodEmoji = result.value(forKey: "moodEmoji") as? Int,
+                       let moodDescribe = result.value(forKey: "moodDescribe") as? String,
+                       let activitySelection = result.value(forKey: "activitySelection") as? String {
+                        addNewEntityList.sampleEntity.append(AddNewEntity(id: id, moodDate: moodDate, notesText: notesText, moodEmoji: moodEmoji, moodDescribe: moodDescribe, activitySelection: activitySelection))
                     }
-                    
-                    if let moodDate = result.value(forKey: "moodDate") as? Date {
-                        addNewEntityList.moodDateArray.append(moodDate)
-                    }
-                    
-                    if let notesText = result.value(forKey: "notesText") as? String {
-                        addNewEntityList.notesTextArray.append(notesText)
-                    }
-                    
-                    if let moodEmoji = result.value(forKey: "moodEmoji") as? Int {
-                        addNewEntityList.moodEmojiArray.append(moodEmoji)
-                    }
-                    
-                    if let moodDescribe = result.value(forKey: "moodDescribe") as? String {
-                        addNewEntityList.moodDescribeArray.append(moodDescribe)
-                    }
-                    
-                    if let activitySelection = result.value(forKey: "activitySelection") as? String {
-                        addNewEntityList.activitySelectionArray.append(activitySelection)
-                    }
-
                 }
             }
             completion(addNewEntityList)
@@ -90,7 +67,7 @@ struct CoreDataManager {
             completion(addNewEntityList) //TODO: Take a look later!!!
         }
     }
-
+    
     func deleteItem(chosenId: UUID, completion: ((_ addNewEntity: AddNewEntity) -> ()), onSuccess: () -> (), onError: () -> ()) {
 
         var addNewEntity = AddNewEntity()

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainTabbarViewController: UITabBarController {
+class MainTabbarViewController: UITabBarController, UITabBarControllerDelegate {
     
     var plusButton = UIButton()
     var pulse: PulseAnimation?
@@ -27,9 +27,9 @@ class MainTabbarViewController: UITabBarController {
         configureTabbar()
     }
     
-    private func fetchCoreDatas(completion: (_ addNewEntityList: AddNewEntityList) -> ()) {
-        CoreDataManager.shared.loadData { addNewEntityList in
-            completion(addNewEntityList)
+    private func fetchCoreDatas(completion: (_ addNewEntityList: AddNewEntityListSample) -> ()) {
+        CoreDataManager.shared.loadData { addNewEntityListSample in
+            completion(addNewEntityListSample)
         }
     }
     
@@ -38,8 +38,8 @@ class MainTabbarViewController: UITabBarController {
         var newDateStrArr = [String]()
         let today = Date()
         fetchCoreDatas { addNewEntityList in
-            for date in addNewEntityList.moodDateArray {
-                newDateStrArr.append(date.dateToString("yyyy-MM-dd"))
+            for date in addNewEntityList.sampleEntity {
+                newDateStrArr.append(date.moodDate?.dateToString("yyyy-MM-dd") ?? "")
             }
             returnValue = newDateStrArr.contains(today.dateToString("yyyy-MM-dd"))
         }
@@ -47,9 +47,10 @@ class MainTabbarViewController: UITabBarController {
     }
     
     private func configureTabbar() {
+        self.delegate = self
         let homeVC = MainRouter.createModule()
         let settingsVC = SettingsRouter.createModule()
-        let addVC = AddNewRouter.createModule()
+        let addVC = AddNewRouter.createModule() //boş bir view controller koyulup etkisiz hale getirilmeli
         let analizeVC = AnalizeRouter.createModule()
         let journalVC = JournalPageRouter.createModule()
         analizeVC.tabBarItem.image = UIImage(systemName: "chart.xyaxis.line")
@@ -60,13 +61,21 @@ class MainTabbarViewController: UITabBarController {
         journalVC.tabBarItem.title = "Journal"
         homeVC.tabBarItem.title = "Home"
         settingsVC.tabBarItem.title = "Settings"
-        setViewControllers([homeVC, analizeVC, addVC, journalVC, settingsVC], animated: false)
+        viewControllers = [homeVC, analizeVC, addVC, journalVC, settingsVC]
         modalPresentationStyle = .fullScreen
         tabBar.tintColor = .black
         tabBar.barTintColor = .systemPurple
 //        tabBar.selectedItem?.badgeValue = "New"
         tabBar.unselectedItemTintColor = .secondaryLabel
         tabBar.backgroundColor = UIColor(named: "tabbarColor")
+    }
+    
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        guard let viewControllers = viewControllers else { return true }
+        if viewController == viewControllers[2] {
+            return false
+        }
+        return true
     }
     
     public func setupPlusButton() {

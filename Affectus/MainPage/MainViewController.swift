@@ -8,7 +8,7 @@
 import UIKit
 
 protocol MainViewControllerProtocol: AnyObject {
-    func loadCoreData(_ listData: AddNewEntityList)
+    func loadCoreData(_ slistData: AddNewEntityListSample)
     func deleteItemWithSuccess()
     func deleteItemWithError()
 }
@@ -24,49 +24,41 @@ class MainViewController: UIViewController, MainViewControllerProtocol, EditOrDe
         return view
     }()
     
-    var listData: AddNewEntityList?
-    var addNewEntity: AddNewEntity?
-    var localIndex: Int?
+    private var unsortedListData: [AddNewEntity] = []
+    private var sortedListData: [AddNewEntity] = []
+    private var localIndex: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter?.notifyViewDidLoad()
         configureUI()
         sendLocalNotification()
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(didNewDataFetched(_ :)),
-                                               name: .didSavedNewData,
-                                               object: nil)
+//        NotificationCenter.default.addObserver(self,
+//                                               selector: #selector(didNewDataFetched(_ :)),
+//                                               name: .didSavedNewData,
+//                                               object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         presenter?.notifyViewWillAppear()
         configureTabbar()
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(didNewDataFetched(_ :)),
-                                               name: .didSavedNewData,
-                                               object: nil)
-    }
-    
-    func saveUserPassedOnboarding() {
-        UserDefaults.standard.set(true, forKey: "UserPassedOnboarding")
-    }
-    
-    @objc func didNewDataFetched(_ notification: Notification) {
-        CoreDataManager.shared.loadData {  addNewEntityList in
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                self.listData = addNewEntityList
-                self.mainCollectionView.reloadData()
-            }
-        }
+//        NotificationCenter.default.addObserver(self,
+//                                               selector: #selector(didNewDataFetched(_ :)),
+//                                               name: .didSavedNewData,
+//                                               object: nil)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         presenter?.notifyViewWillDisappear()
     }
+    
+    func saveUserPassedOnboarding() {
+        UserDefaults.standard.set(true, forKey: "UserPassedOnboarding")
+    }
+    
+    
     
     func deleteItemWithSuccess() {
         animateWithImage("checked")
@@ -84,12 +76,17 @@ class MainViewController: UIViewController, MainViewControllerProtocol, EditOrDe
         tabBarController?.tabBar.isHidden = false
     }
     
-    func loadCoreData(_ listData: AddNewEntityList) {
-        DispatchQueue.main.async { [weak self] in
+    func loadCoreData(_ slistData: AddNewEntityListSample) {
+        DispatchQueue.main.async {[weak self] in
             guard let self = self else { return }
-            self.listData = listData
+            self.sortedListData = self.sortData(slistData)
             self.mainCollectionView.reloadData()
         }
+    }
+    
+    func sortData(_ list: AddNewEntityListSample) -> [AddNewEntity] { //MARK: - ???? sort hala sorun
+        let sortedlist = list.sampleEntity.sorted { $0.moodDate! > $1.moodDate! }
+        return sortedlist
     }
     
     func sendLocalNotification() {
@@ -121,16 +118,14 @@ class MainViewController: UIViewController, MainViewControllerProtocol, EditOrDe
     }
     
     func showButtonTapped(_ selectedId: UUID) {
-        guard let localIndex = localIndex else { return }
-        presenter?.notifyShowButtonTapped(selectedId, localIndex)
+        presenter?.notifyShowButtonTapped(selectedId)
         editView.removeFromSuperview()
         tabBarController?.tabBar.isUserInteractionEnabled = true
         tabBarController?.tabBar.isHidden = false
     }
     
     func deleteButtonTapped(_ selectedId: UUID) {
-        guard let localIndex = localIndex else { return }
-        presenter?.notifyDeleteButtonTapped(selectedId, localIndex)
+        presenter?.notifyDeleteButtonTapped(selectedId)
         
         self.editView.removeFromSuperview()
         self.mainCollectionView.reloadData()
@@ -153,8 +148,8 @@ class MainViewController: UIViewController, MainViewControllerProtocol, EditOrDe
     }
     
     func configureCollectionView() {
-        mainCollectionView.register(UINib(nibName: "MainCell", bundle: nil),
-                                forCellWithReuseIdentifier: "MainCell")
+        mainCollectionView.register(UINib(nibName: String(describing: MainCell.self), bundle: nil),
+                                forCellWithReuseIdentifier: String(describing: MainCell.self))
         mainCollectionView.register(HeaderCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderCollectionReusableView.identifier)
         mainCollectionView.delegate = self
         mainCollectionView.dataSource = self
@@ -175,15 +170,14 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return listData?.idArray.count ?? 0
+        return sortedListData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MainCell", for: indexPath) as! MainCell
-        
-        cell.titleLabel.text = listData?.moodDescribeArray[indexPath.row]
-        cell.descriptionLabel.text = listData?.moodDateArray[indexPath.row].dateToString("d MMM yyyy HH:mm")
-        cell.cellImageview.image = cell.generateCellImage(listData?.moodEmojiArray[indexPath.row] ?? 0)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: MainCell.self), for: indexPath) as! MainCell
+        cell.titleLabel.text = sortedListData[indexPath.row].moodDescribe
+        cell.descriptionLabel.text = sortedListData[indexPath.row].moodDate!.dateToString("d MMM yyyy HH:mm")
+        cell.cellImageview.image = cell.generateCellImage((sortedListData[indexPath.row].moodEmoji)!)
         
         return cell
     }
@@ -193,8 +187,8 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         editView.frame = CGRect(x: 0, y: 0,
                                   width: view.frame.width,
                                   height: view.frame.height)
-        editView.selectedId = listData?.idArray[indexPath.row]
-        localIndex = indexPath.row
+        editView.selectedId = sortedListData[indexPath.row].id
+        //localIndex = indexPath.row
         tabBarController?.tabBar.isUserInteractionEnabled = false
         tabBarController?.tabBar.isHidden = true
         

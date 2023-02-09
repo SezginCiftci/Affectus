@@ -14,14 +14,15 @@ protocol JournalPageInteractorProtocol {
 class JournalPageInteractor: JournalPageInteractorProtocol {
     weak var presenter: JournalPageInteractorOutputProtocol?
     var listData: AddNewEntityList?
+    var sampleList: AddNewEntityListSample?
     
     func didFetchCoreData() {
-        CoreDataManager.shared.loadData { addNewEntityList in
-            self.listData = addNewEntityList
-            guard let listData = listData else {
+        CoreDataManager.shared.loadData { addNewEntityListSample in
+            self.sampleList = addNewEntityListSample
+            guard let sampleList = sampleList else {
                 return
             }
-            presenter?.notifyDidFetchCoreData(listData)
+            presenter?.notifyDidFetchCoreData(sampleList)
         }
     }
 }

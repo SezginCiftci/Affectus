@@ -20,7 +20,7 @@ class AnalizeChartView: UIView, ChartViewDelegate {
     
     var entryCount = 0
     
-    var listData: AddNewEntityList?
+    var listData: AddNewEntityListSample?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -78,7 +78,7 @@ class AnalizeChartView: UIView, ChartViewDelegate {
 //        dataSet1.fillAlpha = 0.5
 //        dataSet1.drawFilledEnabled = true
         dataSet1.setColor(UIColor(named: "cellGradientStartColour")!)
-        let dataSet2 = LineChartDataSet(entries: yValues, label: "Avarage")
+        let dataSet2 = LineChartDataSet(entries: yValues, label: "Average")
         dataSet2.mode = .cubicBezier
         dataSet2.drawHorizontalHighlightIndicatorEnabled = false
         dataSet2.drawVerticalHighlightIndicatorEnabled = false
@@ -93,13 +93,13 @@ class AnalizeChartView: UIView, ChartViewDelegate {
     }
     
     func setChartDataWithCoreData() {
-        CoreDataManager.shared.loadData { addNewEntityList in
-            self.listData = addNewEntityList
-            guard let listData = listData else {
+        CoreDataManager.shared.loadData { addNewEntityListSample in
+            self.listData = addNewEntityListSample
+            guard let sampleList = listData else {
                 return
             }
-            for data in listData.moodEmojiArray {
-                xValues.append(ChartDataEntry(x: Double(entryCount), y: Double(generateChartData(data))))
+            for data in sampleList.sampleEntity {
+                xValues.append(ChartDataEntry(x: Double(entryCount), y: Double(generateChartData(data.moodEmoji ?? 0))))
                 entryCount += 1
                 yValues.append(ChartDataEntry(x: Double(entryCount), y: 3.0))
             }
