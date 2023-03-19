@@ -15,6 +15,7 @@ class DatePickViewController: UIViewController {
     
     var dateDelegate: DatePickViewDelegate?
     var selectedDate: Date?
+    @IBOutlet weak var datePicker: UIDatePicker!
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -11,6 +11,9 @@ protocol AddNewViewControllerProtocol: AnyObject {
     func dismissViewController()
     func saveDataFailed()
     func loadCoreData(noteText: String, moodEmoji: Int, moodDescribe: String, moodActivity: String, moodDate: Date, id: UUID)
+    
+    func deleteItemWithSuccess()
+    func deleteItemWithError()
 }
 
 class AddNewViewController: UIViewController, AddNewViewControllerProtocol, DatePickViewDelegate {
@@ -55,12 +58,7 @@ class AddNewViewController: UIViewController, AddNewViewControllerProtocol, Date
             self.selectedEmotionsLabel.text = moodDescribe
             self.selectedActivityLabel.text = moodActivity
             self.dateButton.setTitle(moodDate.dateToString("d MMM "), for: .normal)
-            self.moodSlider.isUserInteractionEnabled = false
-            self.addNewTextView.isUserInteractionEnabled = false
-            self.addNewActivity.isUserInteractionEnabled = false
-            self.addNewDescribe.isUserInteractionEnabled = false
-            self.saveButton.isEnabled = false
-            self.saveButton.alpha = 0.5
+            self.setSlider(value: Float(moodEmoji))
         }
     }
     
@@ -72,18 +70,35 @@ class AddNewViewController: UIViewController, AddNewViewControllerProtocol, Date
         }
     }
     
+    func deleteItemWithSuccess() {
+        if let emotionText = selectedEmotionsLabel.text,
+           let activityText = selectedActivityLabel.text {
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.presenter?.notifySaveButtonTapped(UUID(),
+                                                       self.chosenDate ?? .now,
+                                                       self.addNewTextView.text ?? "",
+                                                       Int(self.moodSlider.value),
+                                                       emotionText,
+                                                       activityText)
+            }
+        }
+    }
+    
+    func deleteItemWithError() {
+        showAlertView(title: "Error!", message: "Something went wrong", alertActions: [])
+    }
+    
     func configureUI() {
         configureKeyboard()
-        dateButton.isUserInteractionEnabled = false
-        if !isShowButtonTapped {
-            dateButton.setTitle(Date.now.dateToString("d MMM "), for: .normal)
-            moodSlider.isUserInteractionEnabled = true
-            addNewTextView.isUserInteractionEnabled = true
-            addNewActivity.isUserInteractionEnabled = true
-            addNewDescribe.isUserInteractionEnabled = true
-            saveButton.isEnabled = true
-            saveButton.alpha = 1
-        }
+        dateButton.isUserInteractionEnabled = true
+        dateButton.setTitle(Date.now.dateToString("d MMM "), for: .normal)
+        moodSlider.isUserInteractionEnabled = true
+        addNewTextView.isUserInteractionEnabled = true
+        addNewActivity.isUserInteractionEnabled = true
+        addNewDescribe.isUserInteractionEnabled = true
+        saveButton.isEnabled = true
+        saveButton.alpha = 1
     }
     
     func configureKeyboard() {
@@ -117,8 +132,12 @@ class AddNewViewController: UIViewController, AddNewViewControllerProtocol, Date
     }
     
     @IBAction func moodSliderValueDidChange(_ sender: UISlider) {
+        setSlider(value: sender.value)
+    }
+    
+    private func setSlider(value: Float) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            switch sender.value {
+            switch value {
             case 0..<0.5:
                 self.moodSlider.value = 0
                 self.moodImageview.image = UIImage(named: MoodImageNames.Cry.rawValue)
@@ -152,32 +171,46 @@ class AddNewViewController: UIViewController, AddNewViewControllerProtocol, Date
     
     func getSelectedDate(_ selectedDate: Date) {
         chosenDate = selectedDate
+        dateButton.setTitle(selectedDate.dateToString("d MMM "), for: .normal)
     }
     
     @IBAction func saveButtonAct(_ sender: UIButton) {
         
-        checkTextViewIsEmpty()
-        checkSelectedEmotionsIsEmpty()
-        checkSelectedActivityIsEmpty()
+        guard let dateIsSelected = presenter?.isTodayDateGiven(selectedDate: self.chosenDate ?? .now) else {
+            print("Something went wrong")
+            return
+        }
         
-        if let emotionText = selectedEmotionsLabel.text,
-           let activityText = selectedActivityLabel.text {
-            
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                self.presenter?.notifySaveButtonTapped(UUID(),
-                                                       self.chosenDate ?? .now,
-                                                       self.addNewTextView.text ?? "",
-                                                       Int(self.moodSlider.value),
-                                                       emotionText,
-                                                       activityText)
-            }
+        if dateIsSelected {
+            showAlertView(title: "Error", message: "This date is already given. Pick another date", alertActions: [])
         } else {
-            let okButton = UIAlertAction(title: "OK",
-                                         style: .cancel)
-            showAlertView(title: "Error!",
-                          message: "You should choose one of emojis!",
-                          alertActions: [okButton])
+            checkTextViewIsEmpty()
+            checkSelectedEmotionsIsEmpty()
+            checkSelectedActivityIsEmpty()
+
+            if !isShowButtonTapped {
+                if let emotionText = selectedEmotionsLabel.text,
+                   let activityText = selectedActivityLabel.text {
+
+                    DispatchQueue.main.async { [weak self] in
+                        guard let self = self else { return }
+                        self.presenter?.notifySaveButtonTapped(UUID(),
+                                                               self.chosenDate ?? .now,
+                                                               self.addNewTextView.text ?? "",
+                                                               Int(self.moodSlider.value),
+                                                               emotionText,
+                                                               activityText)
+                    }
+                } else {
+                    let okButton = UIAlertAction(title: "OK",
+                                                 style: .cancel)
+                    showAlertView(title: "Error!",
+                                  message: "You should choose one of emojis!",
+                                  alertActions: [okButton])
+                }
+            } else {
+                presenter?.notifyEditSaveButtonTapped(showUUID!)
+            }
         }
     }
 

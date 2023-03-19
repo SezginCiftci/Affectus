@@ -21,13 +21,14 @@ class AnalizeViewController: UIViewController, AnalizeViewControllerProtocol {
     var presenter: AnalizePresenterProtocol?
     var listData: AddNewEntityList?
     var sampleList: AddNewEntityListSample?
+    var sortedListData = [AddNewEntity]()
     
     let formatter = DateFormatter()
     private var isPageFirstTimeShown = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //presenter?.notifyViewDidload()
+        presenter?.notifyViewDidload()
         configureCollectionView()
         self.configureCalender()
     }
@@ -43,8 +44,14 @@ class AnalizeViewController: UIViewController, AnalizeViewControllerProtocol {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             self.sampleList = listData
+            self.sortedListData = self.sortData(listData)
             self.analizeCollectionView.reloadData()
         }
+    }
+    
+    func sortData(_ list: AddNewEntityListSample) -> [AddNewEntity] { //MARK: - ???? sort hala sorun
+        let sortedlist = list.sampleEntity.sorted { $0.moodDate! > $1.moodDate! }
+        return sortedlist
     }
     
     func configureCalender() {
@@ -67,16 +74,16 @@ extension AnalizeViewController: UICollectionViewDataSource, UICollectionViewDel
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return sampleList?.sampleEntity.count ?? 0
+        return sortedListData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AnalizeCell", for: indexPath) as! AnalizeCell
         
-        cell.emotionLabel.text = sampleList?.sampleEntity[indexPath.row].moodDescribe
-        cell.activityLabel.text = sampleList?.sampleEntity[indexPath.row].activitySelection
-        cell.timeLabel.text = sampleList?.sampleEntity[indexPath.row].moodDate?.dateToString("d MMM, HH:mm")
-        cell.cellEmojiImageView.image = cell.generateCellImage(sampleList?.sampleEntity[indexPath.row].moodEmoji ?? 0)
+        cell.emotionLabel.text = sortedListData[indexPath.row].moodDescribe
+        cell.activityLabel.text = sortedListData[indexPath.row].activitySelection
+        cell.timeLabel.text = sortedListData[indexPath.row].moodDate?.dateToString("d MMM, HH:mm")
+        cell.cellEmojiImageView.image = cell.generateCellImage(sortedListData[indexPath.row].moodEmoji ?? 0)
         cell.layer.cornerRadius = 20
         
         return cell

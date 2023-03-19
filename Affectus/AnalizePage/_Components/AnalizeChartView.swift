@@ -19,8 +19,7 @@ class AnalizeChartView: UIView, ChartViewDelegate {
     lazy var xValues = [ChartDataEntry]()
     
     var entryCount = 0
-    
-    var listData: AddNewEntityListSample?
+    var sortedListData = [AddNewEntity]()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -94,16 +93,19 @@ class AnalizeChartView: UIView, ChartViewDelegate {
     
     func setChartDataWithCoreData() {
         CoreDataManager.shared.loadData { addNewEntityListSample in
-            self.listData = addNewEntityListSample
-            guard let sampleList = listData else {
-                return
-            }
-            for data in sampleList.sampleEntity {
+            self.sortedListData = sortData(addNewEntityListSample)
+            
+            for data in sortedListData {
                 xValues.append(ChartDataEntry(x: Double(entryCount), y: Double(generateChartData(data.moodEmoji ?? 0))))
                 entryCount += 1
                 yValues.append(ChartDataEntry(x: Double(entryCount), y: 3.0))
             }
         }
+    }
+    
+    func sortData(_ list: AddNewEntityListSample) -> [AddNewEntity] { //MARK: - ???? sort hala sorun
+        let sortedlist = list.sampleEntity.sorted { $0.moodDate! < $1.moodDate! }
+        return sortedlist
     }
     
     func generateChartData(_ emojiIndex: Int) -> Int {

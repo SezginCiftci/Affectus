@@ -17,30 +17,13 @@
                 <rect key="frame" x="0.0" y="0.0" width="100" height="40"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tiR-NA-QRZ">
+                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" semanticContentAttribute="forceLeftToRight" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tiR-NA-QRZ">
                         <rect key="frame" x="0.0" y="0.0" width="100" height="40"/>
                         <color key="backgroundColor" name="cellGradientEndColour"/>
                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                        <state key="normal">
-                            <attributedString key="attributedTitle">
-                                <fragment content="Button">
-                                    <attributes>
-                                        <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                        <font key="NSFont" size="18" name="Helvetica"/>
-                                    </attributes>
-                                </fragment>
-                            </attributedString>
+                        <state key="normal" title="Chill">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>
-                        <buttonConfiguration key="configuration" style="plain">
-                            <attributedString key="attributedTitle">
-                                <fragment content="Button">
-                                    <attributes>
-                                        <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                        <font key="NSFont" size="18" name="Helvetica"/>
-                                    </attributes>
-                                </fragment>
-                            </attributedString>
-                        </buttonConfiguration>
                         <connections>
                             <action selector="pickCellButtonAct:" destination="0xv-KC-zj2" eventType="touchUpInside" id="zP5-W3-xL7"/>
                         </connections>

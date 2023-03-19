@@ -33,20 +33,12 @@ class MainViewController: UIViewController, MainViewControllerProtocol, EditOrDe
         presenter?.notifyViewDidLoad()
         configureUI()
         sendLocalNotification()
-//        NotificationCenter.default.addObserver(self,
-//                                               selector: #selector(didNewDataFetched(_ :)),
-//                                               name: .didSavedNewData,
-//                                               object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         presenter?.notifyViewWillAppear()
         configureTabbar()
-//        NotificationCenter.default.addObserver(self,
-//                                               selector: #selector(didNewDataFetched(_ :)),
-//                                               name: .didSavedNewData,
-//                                               object: nil)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -188,7 +180,6 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
                                   width: view.frame.width,
                                   height: view.frame.height)
         editView.selectedId = sortedListData[indexPath.row].id
-        //localIndex = indexPath.row
         tabBarController?.tabBar.isUserInteractionEnabled = false
         tabBarController?.tabBar.isHidden = true
         

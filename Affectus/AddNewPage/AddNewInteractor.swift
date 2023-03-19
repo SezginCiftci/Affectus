@@ -10,6 +10,7 @@ import Foundation
 protocol AddNewInteractorProtocol {
     func saveToCoreData(_ id: UUID, _ selectedDate: Date, _ givenText: String, _ selectedEmoji: Int, _ selectedEmotions: String, _ selectedActivies: String)
     func fetchCoreData(completion: (_ listData: [AddNewEntity]) -> Void)
+    func didDeleteItem(_ selectedId: UUID, _ itemIndex: Int)
 }
 
 class AddNewInteractor: AddNewInteractorProtocol {
@@ -44,6 +45,24 @@ class AddNewInteractor: AddNewInteractorProtocol {
     func fetchCoreData(completion: (_ listData: [AddNewEntity]) -> Void) {
         CoreDataManager.shared.loadData { addNewEntityListSample in
             completion(addNewEntityListSample.sampleEntity)
+        }
+    }
+    
+    func fetchCoreDatas() {
+        CoreDataManager.shared.loadData { [weak self] addNewEntityListSample in
+            guard let self = self else { return }
+            self.sampleEntityList = addNewEntityListSample
+        }
+    }
+    
+    func didDeleteItem(_ selectedId: UUID, _ itemIndex: Int) {
+        fetchCoreDatas()
+        CoreDataManager.shared.deleteItem(chosenId: selectedId) { addNewEntity in
+            sampleEntityList?.sampleEntity.remove(at: itemIndex)
+        } onSuccess: {
+            self.presenter?.deleteOnSuccess()
+        } onError: {
+            self.presenter?.deleteOnError()
         }
     }
 }
