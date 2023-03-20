@@ -33,6 +33,30 @@ class AnalizeViewController: UIViewController, AnalizeViewControllerProtocol {
         self.configureCalender()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didNewDataFetched(_ :)),
+                                               name: .didSavedNewData,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didNewDataFetched(_ :)),
+                                               name: .didDeletedData,
+                                               object: nil)
+    }
+    
+    @objc private func didNewDataFetched(_ notification: Notification) {
+        CoreDataManager.shared.loadData { addNewEntityListSample in
+            self.sampleList = addNewEntityListSample
+            guard let sampleList = sampleList else {
+                return
+            }
+            self.sampleList = sampleList
+            self.sortedListData = self.sortData(sampleList)
+            self.analizeCollectionView.reloadData()
+        }
+    }
+    
     func configureCollectionView() {
         analizeCollectionView.register(UINib(nibName: "AnalizeCell", bundle: nil),
                                 forCellWithReuseIdentifier: "AnalizeCell")

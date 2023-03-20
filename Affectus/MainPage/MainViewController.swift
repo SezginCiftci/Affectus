@@ -50,8 +50,6 @@ class MainViewController: UIViewController, MainViewControllerProtocol, EditOrDe
         UserDefaults.standard.set(true, forKey: "UserPassedOnboarding")
     }
     
-    
-    
     func deleteItemWithSuccess() {
         animateWithImage("checked")
     }
@@ -124,6 +122,7 @@ class MainViewController: UIViewController, MainViewControllerProtocol, EditOrDe
         tabBarController?.tabBar.isUserInteractionEnabled = true
         tabBarController?.tabBar.isHidden = false
         presenter?.notifyViewDidLoad()
+        NotificationCenter.default.post(name: .didDeletedData, object: nil)
     }
     
     func dismissView() {

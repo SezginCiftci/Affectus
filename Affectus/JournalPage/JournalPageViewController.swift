@@ -31,6 +31,10 @@ class JournalPageViewController: UIViewController, JournalPageViewControllerProt
                                                selector: #selector(didNewDataFetched(_ :)),
                                                name: .didSavedNewData,
                                                object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didNewDataFetched(_ :)),
+                                               name: .didDeletedData,
+                                               object: nil)
     }
     
     @objc func didNewDataFetched(_ notification: Notification) {
